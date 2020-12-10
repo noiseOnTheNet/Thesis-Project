@@ -174,9 +174,12 @@ primary:
             | '(' expr ')'
             | '[' array ']' ;
 
-ID       : [a-zA-Z][a-zA-Z0-9_]+;
-FESPACE  : [' '|\n|\t] -> skip;
-DNUM     : [0-9]+ ('.' [0-9]+)?;
+FESPACE  : 'fespace';
+FUNCTION : 'func';
+//TYPE     : [a-zA-Z]*;
 STRING   : '"' .*? '"';
-FUNCTION : [a-zA-Z]+;
-TYPE     : [a-zA-Z]+;
+LNUM     : [0-9]+;
+DNUM     : [0-9]+ ('.' [0-9]+)?;
+CNUM     : [-]? DNUM? [+-]? DNUM?[i];
+ID       : [a-zA-Z][a-zA-Z0-9_]*;
+WS       : [ \n\u000D] -> skip ;
