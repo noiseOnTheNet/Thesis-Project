@@ -92,7 +92,6 @@ fespace_def_list
 declaration
             : type_of_dcl list_of_dcls ';'                  #declaration_type_of_dcl_list_of_dcls
             | type_of_dcl list_of_dcls '=' instruction      #declaration_type_of_dcl_list_of_dcls_instruction   //added
-            | type_of_dcl list_of_dcls '=' no_comma_expr '()'   #declaration_type_of_dcl_list_of_dcls_no_comma_expr     //added
             | FESPACE fespace_def_list ';'                  #declaration_fespace_def_list
             | spaceIDs ';'                                  #declaration_spaceIDs
             | FUNCTION ID '=' expr ';'                      #declaration_function_id_expr
@@ -207,6 +206,7 @@ primary
             | primary '(' parameters ')'                    #primary_parameters
             | primary '[' expr ']'                          #primary_array
             | primary '[' ']'                               #primary_empty_array
+            | primary '('')'                                #primary_empty_paranthesis //added
             | primary '.' ID                                #primary_dot_id
             | primary '++'                                  #primary_increment
             | primary '--'                                  #primary_decrement

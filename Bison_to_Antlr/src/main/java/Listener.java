@@ -650,20 +650,6 @@ public class Listener implements GrammarListener{
     }
 
     @Override
-    public void enterDeclaration_type_of_dcl_list_of_dcls_no_comma_expr(GrammarParser.Declaration_type_of_dcl_list_of_dcls_no_comma_exprContext ctx) {
-
-    }
-
-    @Override
-    public void exitDeclaration_type_of_dcl_list_of_dcls_no_comma_expr(GrammarParser.Declaration_type_of_dcl_list_of_dcls_no_comma_exprContext ctx) {
-        Expression no_comma_expr = (Expression) this.stack.pop();
-        Expression list_of_dcls = (Expression) this.stack.pop();
-        Expression type_of_dcl = (Expression) this.stack.pop();
-        Declaration_type_of_dcl_list_of_dcls_no_comma_expr node = new Declaration_type_of_dcl_list_of_dcls_no_comma_expr(type_of_dcl, list_of_dcls, no_comma_expr);
-        this.stack.add(node);
-    }
-
-    @Override
     public void enterDeclaration_fespace_def_list(GrammarParser.Declaration_fespace_def_listContext ctx) {
 
     }
@@ -1657,6 +1643,18 @@ public class Listener implements GrammarListener{
     }
 
     @Override
+    public void enterPrimary_empty_paranthesis(GrammarParser.Primary_empty_paranthesisContext ctx) {
+
+    }
+
+    @Override
+    public void exitPrimary_empty_paranthesis(GrammarParser.Primary_empty_paranthesisContext ctx) {
+        Expression primary = (Expression) this.stack.pop();
+        Primary_empty_paranthesis node = new Primary_empty_paranthesis(primary);
+        this.stack.add(node);
+    }
+
+    @Override
     public void enterPrimary_array(GrammarParser.Primary_arrayContext ctx) {
 
     }
@@ -1829,6 +1827,17 @@ class Primary_empty_array extends Node implements Expression {
     public void dump() {
         this.primary.dump();
         System.out.print("[]");
+    }
+}
+
+class Primary_empty_paranthesis extends Node implements Expression {
+    Expression primary;
+    Primary_empty_paranthesis(Expression primary){
+        this.primary = primary;
+    }
+    public void dump() {
+        this.primary.dump();
+        System.out.print("()");
     }
 }
 
@@ -2771,26 +2780,6 @@ class Declaration_type_of_dcl_list_of_dcls_instruction extends Node implements E
         this.list_of_dcls.dump();
         System.out.print("=");
         this.instruction.dump();
-    }
-}
-
-
-class Declaration_type_of_dcl_list_of_dcls_no_comma_expr extends Node implements Expression {
-    Expression type_of_dcl;
-    Expression list_of_dcls;
-    Expression no_comma_expr;
-    Declaration_type_of_dcl_list_of_dcls_no_comma_expr(Expression type_of_dcl, Expression list_of_dcls, Expression no_comma_expr){
-        this.type_of_dcl = type_of_dcl;
-        this.list_of_dcls = list_of_dcls;
-        this.no_comma_expr = no_comma_expr;
-    }
-    public void dump() {
-        this.type_of_dcl.dump();
-        System.out.print(' ');
-        this.list_of_dcls.dump();
-        System.out.print("=");
-        this.no_comma_expr.dump();
-        System.out.print("()");
     }
 }
 

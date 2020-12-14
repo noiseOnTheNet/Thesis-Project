@@ -15,6 +15,7 @@ public class Main {
                 "int2d(Th)(dx(u)*dx(v) + dy(u)*dy(v))\n" +
                 "- int2d(Th)(f*v)\n" +
                 "+ on(1,2,3,4,u=g) ;\n" +
+                "real cpu = clock();\n" +
                 "plot(u);"));
         CommonTokenStream tokenStream = new CommonTokenStream(lexer);
         GrammarParser parser = new GrammarParser(tokenStream);
