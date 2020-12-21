@@ -1,0 +1,19 @@
+import org.junit.jupiter.api.Test;
+
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+class Primary_id_sub_script_exprTest {
+
+    @Test
+    void dump() {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        PrintStream printStream = new PrintStream(baos);
+        Expression sub_script_expr = new Primary_string("y=x+4");
+        Primary_id_sub_script_expr primary_id_sub_script_expr= new Primary_id_sub_script_expr("value", sub_script_expr);
+        primary_id_sub_script_expr.dump(printStream);
+        assertEquals("value(y=x+4)", baos.toString());
+    }
+}
