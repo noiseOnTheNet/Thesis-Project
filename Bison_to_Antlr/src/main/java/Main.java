@@ -29,9 +29,7 @@ public class Main {
             System.out.println("unexpected stack size: "+l.stack.size());
         System.out.println(baos.toString());
 
-
-
-
+        
         ByteArrayOutputStream baos2 = new ByteArrayOutputStream();
         PrintStream printStream2 = new PrintStream(baos2);
 
@@ -46,7 +44,7 @@ public class Main {
 
         if (l2.stack.size() > 0) {
             ((Expression) l2.stack.peek()).dump(printStream2);
-            if(((Expression) l2.stack.peek()).equals((Expression) l.stack.peek()) == true)
+            if((l2.stack.peek()).equals(l.stack.peek()) == true)
                 System.out.print("equal");
             else
                 System.out.print("not");

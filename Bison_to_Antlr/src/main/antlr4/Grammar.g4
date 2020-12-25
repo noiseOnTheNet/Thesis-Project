@@ -315,6 +315,8 @@ primary
             | '[' array ']'                                 #primary_array_
             ;
 
+templatevar: '$' '{' ID ':' ID '}'                          #templateVar ;
+
 FESPACE  : 'fespace';
 FESPACE1 : 'fespace1';
 FESPACE3 : 'fespace3';
@@ -328,3 +330,5 @@ LNUM     : [0-9e]+;
 DNUM     : [0-9e]+ (['.'0-9e]+)?;
 CNUM     : [-]? DNUM? [+-]? DNUM?[i];
 WS       : [ \n\u000D] -> skip ;
+COMMENT:            '/*' .*? '*/'    -> channel(HIDDEN);
+LINE_COMMENT:       '//' ~[\r\n]*    -> channel(HIDDEN);

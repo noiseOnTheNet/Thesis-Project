@@ -2617,6 +2617,16 @@ public class Listener implements GrammarListener{
     }
 
     @Override
+    public void enterTemplateVar(GrammarParser.TemplateVarContext ctx) {
+
+    }
+
+    @Override
+    public void exitTemplateVar(GrammarParser.TemplateVarContext ctx) {
+
+    }
+
+    @Override
     public void enterPrimary_expr(GrammarParser.Primary_exprContext ctx) {
 
     }
@@ -2676,11 +2686,11 @@ class Primary_id extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        if(this.variable.equals(((Primary_id) node).variable))
-            return true;
-        else
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
             return false;
+        else
+            return this.variable.equals(((Primary_id) node).variable);
     }
 }
 
@@ -2697,11 +2707,11 @@ class Primary_dnum extends Node implements Expression{
     }
 
     @Override
-    public boolean equals(Expression node) {
-        if(this.value == ((Primary_dnum) node).value)
-            return true;
-        else
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
             return false;
+        else
+            return this.value == ((Primary_dnum) node).value;
     }
 }
 
@@ -2718,11 +2728,11 @@ class Primary_lnum extends Node implements Expression{
     }
 
     @Override
-    public boolean equals(Expression node) {
-        if(this.value == ((Primary_lnum) node).value)
-            return true;
-        else
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
             return false;
+        else
+            return this.value == ((Primary_lnum) node).value;
     }
 }
 
@@ -2736,11 +2746,11 @@ class Primary_cnum extends Node implements Expression{
     }
 
     @Override
-    public boolean equals(Expression node) {
-        if(this.value.equals(((Primary_cnum) node).value))
-            return true;
-        else
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
             return false;
+        else
+            return this.value.equals(((Primary_cnum) node).value);
     }
 }
 
@@ -2756,11 +2766,11 @@ class Primary_string extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        if(this.string.equals(((Primary_string) node).string))
-            return true;
-        else
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
             return false;
+        else
+            return this.string.equals(((Primary_string) node).string);
     }
 }
 
@@ -2779,11 +2789,11 @@ class Primary_parameters extends Node implements Expression{
     }
 
     @Override
-    public boolean equals(Expression node) {
-        if(this.parameters.equals(((Primary_parameters) node).parameters) && this.primary.equals(((Primary_parameters) node).primary))
-            return true;
-        else
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
             return false;
+        else
+            return this.parameters.equals(((Primary_parameters) node).parameters) && this.primary.equals(((Primary_parameters) node).primary);
     }
 }
 
@@ -2802,11 +2812,11 @@ class Primary_array_sub_script_expr extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        if(this.primary.equals(((Primary_array_sub_script_expr) node).primary) && this.sub_script_expr.equals(((Primary_array_sub_script_expr) node).sub_script_expr))
-            return true;
-        else
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
             return false;
+        else
+            return this.primary.equals(((Primary_array_sub_script_expr) node).primary) && this.sub_script_expr.equals(((Primary_array_sub_script_expr) node).sub_script_expr);
     }
 }
 
@@ -2828,11 +2838,11 @@ class Primary_matrix extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        if(this.primary.equals(((Primary_matrix) node).primary) && this.sub_script_expr1.equals(((Primary_matrix) node).sub_script_expr1) && this.sub_script_expr2.equals(((Primary_matrix) node).sub_script_expr2))
-            return true;
-        else
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
             return false;
+        else
+            return this.primary.equals(((Primary_matrix) node).primary) && this.sub_script_expr1.equals(((Primary_matrix) node).sub_script_expr1) && this.sub_script_expr2.equals(((Primary_matrix) node).sub_script_expr2);
     }
 }
 
@@ -2847,11 +2857,11 @@ class Primary_empty_array extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        if(this.primary.equals(((Primary_empty_array) node).primary))
-            return true;
-        else
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
             return false;
+        else
+            return this.primary.equals(((Primary_empty_array) node).primary);
     }
 }
 
@@ -2868,11 +2878,11 @@ class Primary_dot_id extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        if(this.primary.equals(((Primary_dot_id) node).primary) && this.id.equals(((Primary_dot_id) node).id))
-            return true;
-        else
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
             return false;
+        else
+            return this.primary.equals(((Primary_dot_id) node).primary) && this.id.equals(((Primary_dot_id) node).id);
     }
 }
 
@@ -2887,11 +2897,11 @@ class Primary_fespace_dot_id extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        if(this.fespace.equals(((Primary_fespace_dot_id) node).fespace) && this.id.equals(((Primary_fespace_dot_id) node).id))
-            return true;
-        else
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
             return false;
+        else
+            return this.fespace.equals(((Primary_fespace_dot_id) node).fespace) && this.id.equals(((Primary_fespace_dot_id) node).id);
     }
 }
 
@@ -2909,11 +2919,11 @@ class Primary_fespace_parameters extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        if(this.fespace.equals(((Primary_fespace_parameters) node).fespace) && this.parameters.equals(((Primary_fespace_parameters) node).parameters))
-            return true;
-        else
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
             return false;
+        else
+            return this.fespace.equals(((Primary_fespace_parameters) node).fespace) && this.parameters.equals(((Primary_fespace_parameters) node).parameters);
     }
 }
 
@@ -2928,11 +2938,11 @@ class Primary_fespace1_dot_id extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        if(this.fespace1.equals(((Primary_fespace1_dot_id) node).fespace1) && this.id.equals(((Primary_fespace1_dot_id) node).id))
-            return true;
-        else
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
             return false;
+        else
+            return this.fespace1.equals(((Primary_fespace1_dot_id) node).fespace1) && this.id.equals(((Primary_fespace1_dot_id) node).id);
     }
 }
 
@@ -2950,11 +2960,11 @@ class Primary_fespace1_parameters extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        if(this.fespace1.equals(((Primary_fespace1_parameters) node).fespace1) && this.parameters.equals(((Primary_fespace1_parameters) node).parameters))
-            return true;
-        else
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
             return false;
+        else
+            return this.fespace1.equals(((Primary_fespace1_parameters) node).fespace1) && this.parameters.equals(((Primary_fespace1_parameters) node).parameters);
     }
 }
 
@@ -2969,11 +2979,11 @@ class Primary_fespace3_dot_id extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        if(this.fespace3.equals(((Primary_fespace3_dot_id) node).fespace3) && this.id.equals(((Primary_fespace3_dot_id) node).id))
-            return true;
-        else
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
             return false;
+        else
+            return this.fespace3.equals(((Primary_fespace3_dot_id) node).fespace3) && this.id.equals(((Primary_fespace3_dot_id) node).id);
     }
 }
 
@@ -2991,11 +3001,11 @@ class Primary_fespace3_parameters extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        if(this.fespace3.equals(((Primary_fespace3_parameters) node).fespace3) && this.parameters.equals(((Primary_fespace3_parameters) node).parameters))
-            return true;
-        else
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
             return false;
+        else
+            return this.fespace3.equals(((Primary_fespace3_parameters) node).fespace3) && this.parameters.equals(((Primary_fespace3_parameters) node).parameters);
     }
 }
 
@@ -3010,11 +3020,11 @@ class Primary_fespaceS_dot_id extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        if(this.fespaceS.equals(((Primary_fespaceS_dot_id) node).fespaceS) && this.id.equals(((Primary_fespaceS_dot_id) node).id))
-            return true;
-        else
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
             return false;
+        else
+            return this.fespaceS.equals(((Primary_fespaceS_dot_id) node).fespaceS) && this.id.equals(((Primary_fespaceS_dot_id) node).id);
     }
 }
 
@@ -3032,11 +3042,11 @@ class Primary_fespaceS_parameters extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        if(this.fespaceS.equals(((Primary_fespaceS_parameters) node).fespaceS) && this.parameters.equals(((Primary_fespaceS_parameters) node).parameters))
-            return true;
-        else
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
             return false;
+        else
+            return this.fespaceS.equals(((Primary_fespaceS_parameters) node).fespaceS) && this.parameters.equals(((Primary_fespaceS_parameters) node).parameters);
     }
 }
 
@@ -3051,11 +3061,11 @@ class Primary_fespaceL_dot_id extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        if(this.fespaceL.equals(((Primary_fespaceL_dot_id) node).fespaceL) && this.id.equals(((Primary_fespaceL_dot_id) node).id))
-            return true;
-        else
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
             return false;
+        else
+            return this.fespaceL.equals(((Primary_fespaceL_dot_id) node).fespaceL) && this.id.equals(((Primary_fespaceL_dot_id) node).id);
     }
 }
 
@@ -3073,11 +3083,11 @@ class Primary_fespaceL_parameters extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        if(this.fespaceL.equals(((Primary_fespaceL_parameters) node).fespaceL) && this.parameters.equals(((Primary_fespaceL_parameters) node).parameters))
-            return true;
-        else
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
             return false;
+        else
+            return this.fespaceL.equals(((Primary_fespaceL_parameters) node).fespaceL) && this.parameters.equals(((Primary_fespaceL_parameters) node).parameters);
     }
 }
 
@@ -3093,11 +3103,11 @@ class Primary_increment extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        if(this.primary.equals(((Primary_increment) node).primary))
-            return true;
-        else
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
             return false;
+        else
+            return this.primary.equals(((Primary_increment) node).primary);
     }
 }
 
@@ -3113,11 +3123,11 @@ class Primary_decrement extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        if(this.primary.equals(((Primary_decrement) node).primary))
-            return true;
-        else
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
             return false;
+        else
+            return this.primary.equals(((Primary_decrement) node).primary);
     }
 }
 
@@ -3135,8 +3145,11 @@ class Primary_id_sub_script_expr extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.id.equals(((Primary_id_sub_script_expr) node).id) && this.sub_script_expr.equals(((Primary_id_sub_script_expr) node).sub_script_expr);
     }
 }
 
@@ -3154,8 +3167,11 @@ class Primary_id_parameterstype extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.id.equals(((Primary_id_parameterstype) node).id) && this.parameterstype.equals(((Primary_id_parameterstype) node).parameterstype);
     }
 }
 
@@ -3171,8 +3187,11 @@ class Primary_expr extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.expr.equals(((Primary_expr) node).expr);
     }
 }
 
@@ -3188,8 +3207,11 @@ class Primary_array_ extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.array.equals(((Primary_array_) node).array);
     }
 }
 
@@ -3203,8 +3225,11 @@ class Primaryp_primary extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.primary.equals(((Primaryp_primary) node).primary);
     }
 }
 
@@ -3219,8 +3244,11 @@ class Primaryp_primary_transpose extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.primary.equals(((Primaryp_primary_transpose) node).primary);
     }
 }
 
@@ -3234,8 +3262,11 @@ class Pow_expr_primary extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.primaryp.equals(((Pow_expr_primary) node).primaryp);
     }
 }
 
@@ -3253,8 +3284,11 @@ class Pow_expr_power extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.primaryp.equals(((Pow_expr_power) node).primaryp) && this.unary_expr.equals(((Pow_expr_power) node).unary_expr);
     }
 }
 
@@ -3272,8 +3306,11 @@ class Pow_expr_underscore extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.primaryp.equals(((Pow_expr_underscore) node).primaryp) && this.unary_expr.equals(((Pow_expr_underscore) node).unary_expr);
     }
 }
 
@@ -3287,8 +3324,11 @@ class Unary_expr_pow_expr extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.pow_expr.equals(((Unary_expr_pow_expr) node).pow_expr);
     }
 }
 
@@ -3306,8 +3346,11 @@ class Unary_expr_unop_pow_expr extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.unop.equals(((Unary_expr_unop_pow_expr) node).unop) && this.pow_expr.equals(((Unary_expr_unop_pow_expr) node).pow_expr);
     }
 }
 
@@ -3321,8 +3364,11 @@ class Array_no_comma_expr extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.no_comma_expr.equals(((Array_no_comma_expr) node).no_comma_expr);
     }
 }
 
@@ -3340,8 +3386,11 @@ class Array_comma_no_comma_expr extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.array.equals(((Array_comma_no_comma_expr) node).array) && this.no_comma_expr.equals(((Array_comma_no_comma_expr) node).no_comma_expr);
     }
 }
 
@@ -3352,8 +3401,11 @@ class Parameters_ extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return true;
     }
 }
 
@@ -3367,8 +3419,11 @@ class Parameters_fespace extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.fespace.equals(((Parameters_fespace) node).fespace);
     }
 }
 
@@ -3382,8 +3437,11 @@ class Parameters_fespace1 extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.fespace1.equals(((Parameters_fespace1) node).fespace1);
     }
 }
 
@@ -3397,8 +3455,11 @@ class Parameters_fespace3 extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.fespace3.equals(((Parameters_fespace3) node).fespace3);
     }
 }
 
@@ -3412,8 +3473,11 @@ class Parameters_fespaceS extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.fespaceS.equals(((Parameters_fespaceS) node).fespaceS);
     }
 }
 
@@ -3427,8 +3491,11 @@ class Parameters_fespaceL extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.fespaceL.equals(((Parameters_fespaceL) node).fespaceL);
     }
 }
 
@@ -3446,8 +3513,11 @@ class Parameters_id_equal_no_set_expr extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.id.equals(((Parameters_id_equal_no_set_expr) node).id) && this.no_set_expr.equals(((Parameters_id_equal_no_set_expr) node).no_set_expr);
     }
 }
 
@@ -3461,8 +3531,11 @@ class Parameters_sub_scripts_expr extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.sub_script_expr.equals(((Parameters_sub_scripts_expr) node).sub_script_expr);
     }
 }
 
@@ -3479,8 +3552,11 @@ class Parameters_comma_fespace extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.parameters.equals(((Parameters_comma_fespace) node).parameters) && this.fespace.equals(((Parameters_comma_fespace) node).fespace);
     }
 }
 
@@ -3497,8 +3573,11 @@ class Parameters_comma_fespace1 extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.parameters.equals(((Parameters_comma_fespace1) node).parameters) && this.fespace1.equals(((Parameters_comma_fespace1) node).fespace1);
     }
 }
 
@@ -3515,8 +3594,11 @@ class Parameters_comma_fespace3 extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.parameters.equals(((Parameters_comma_fespace3) node).parameters) && this.fespace3.equals(((Parameters_comma_fespace3) node).fespace3);
     }
 }
 
@@ -3533,8 +3615,11 @@ class Parameters_comma_fespaceS extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.parameters.equals(((Parameters_comma_fespaceS) node).parameters) && this.fespaceS.equals(((Parameters_comma_fespaceS) node).fespaceS);
     }
 }
 
@@ -3551,8 +3636,11 @@ class Parameters_comma_fespaceL extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.parameters.equals(((Parameters_comma_fespaceL) node).parameters) && this.fespaceL.equals(((Parameters_comma_fespaceL) node).fespaceL);
     }
 }
 
@@ -3570,8 +3658,11 @@ class Parameters_comma_sub_script_expr extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.parameters.equals(((Parameters_comma_sub_script_expr) node).parameters) && this.sub_script_expr.equals(((Parameters_comma_sub_script_expr) node).sub_script_expr);
     }
 }
 
@@ -3593,8 +3684,11 @@ class Parameters_comma_id_equal_no_set_expr extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.parameters.equals(((Parameters_comma_id_equal_no_set_expr) node).parameters) && this.id.equals(((Parameters_comma_id_equal_no_set_expr) node).id) && this.no_set_expr.equals(((Parameters_comma_id_equal_no_set_expr) node).no_set_expr);
     }
 }
 
@@ -3612,8 +3706,11 @@ class Parameterstype extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.sub_script_expr.equals(((Parameterstype) node).sub_script_expr) && this.parameters.equals(((Parameterstype) node).parameters);
     }
 }
 
@@ -3627,8 +3724,11 @@ class Sub_script_expr_no_ternary_expr extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.no_ternary_expr.equals(((Sub_script_expr_no_ternary_expr) node).no_ternary_expr);
     }
 }
 
@@ -3640,8 +3740,11 @@ class Sub_script_expr_colon extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return true;
     }
 }
 
@@ -3658,8 +3761,11 @@ class Sub_script_expr_no_ternary_expr_colon_no_ternary_expr extends Node impleme
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.no_ternary_expr1.equals(((Sub_script_expr_no_ternary_expr_colon_no_ternary_expr) node).no_ternary_expr1) && this.no_ternary_expr2.equals(((Sub_script_expr_no_ternary_expr_colon_no_ternary_expr) node).no_ternary_expr2);
     }
 }
 
@@ -3679,8 +3785,11 @@ class Sub_script_expr_no_ternary_expr_colon_no_ternary_expr_colon_no_ternary_exp
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.no_ternary_expr1.equals(((Sub_script_expr_no_ternary_expr_colon_no_ternary_expr_colon_no_ternary_expr) node).no_ternary_expr1) && this.no_ternary_expr2.equals(((Sub_script_expr_no_ternary_expr_colon_no_ternary_expr_colon_no_ternary_expr) node).no_ternary_expr2) && this.no_ternary_expr3.equals(((Sub_script_expr_no_ternary_expr_colon_no_ternary_expr_colon_no_ternary_expr) node).no_ternary_expr3);
     }
 }
 
@@ -3694,8 +3803,11 @@ class No_ternary_expr_unary_expr extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.unary_expr.equals(((No_ternary_expr_unary_expr) node).unary_expr);
     }
 }
 
@@ -3712,8 +3824,11 @@ class No_ternary_expr_multiply extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.no_ternary_expr1.equals(((No_ternary_expr_multiply) node).no_ternary_expr1) && this.no_ternary_expr2.equals(((No_ternary_expr_multiply) node).no_ternary_expr2);
     }
 }
 
@@ -3730,8 +3845,11 @@ class No_ternary_expr_dotMultiply extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.no_ternary_expr1.equals(((No_ternary_expr_dotMultiply) node).no_ternary_expr1) && this.no_ternary_expr2.equals(((No_ternary_expr_dotMultiply) node).no_ternary_expr2);
     }
 }
 
@@ -3748,8 +3866,11 @@ class No_ternary_expr_dotDivide extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.no_ternary_expr1.equals(((No_ternary_expr_dotDivide) node).no_ternary_expr1) && this.no_ternary_expr2.equals(((No_ternary_expr_dotDivide) node).no_ternary_expr2);
     }
 }
 
@@ -3766,8 +3887,11 @@ class No_ternary_expr_divide extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.no_ternary_expr1.equals(((No_ternary_expr_divide) node).no_ternary_expr1) && this.no_ternary_expr2.equals(((No_ternary_expr_divide) node).no_ternary_expr2);
     }
 }
 
@@ -3784,8 +3908,11 @@ class No_ternary_expr_modulus extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.no_ternary_expr1.equals(((No_ternary_expr_modulus) node).no_ternary_expr1) && this.no_ternary_expr2.equals(((No_ternary_expr_modulus) node).no_ternary_expr2);
     }
 }
 
@@ -3802,8 +3929,11 @@ class No_ternary_expr_plus extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.no_ternary_expr1.equals(((No_ternary_expr_plus) node).no_ternary_expr1) && this.no_ternary_expr2.equals(((No_ternary_expr_plus) node).no_ternary_expr2);
     }
 }
 
@@ -3820,8 +3950,11 @@ class No_ternary_expr_minus extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.no_ternary_expr1.equals(((No_ternary_expr_minus) node).no_ternary_expr1) && this.no_ternary_expr2.equals(((No_ternary_expr_minus) node).no_ternary_expr2);
     }
 }
 
@@ -3838,8 +3971,11 @@ class No_ternary_expr_out extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.no_ternary_expr1.equals(((No_ternary_expr_out) node).no_ternary_expr1) && this.no_ternary_expr2.equals(((No_ternary_expr_out) node).no_ternary_expr2);
     }
 }
 
@@ -3856,8 +3992,11 @@ class No_ternary_expr_in extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.no_ternary_expr1.equals(((No_ternary_expr_in) node).no_ternary_expr1) && this.no_ternary_expr2.equals(((No_ternary_expr_in) node).no_ternary_expr2);
     }
 }
 
@@ -3874,8 +4013,11 @@ class No_ternary_expr_and extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.no_ternary_expr1.equals(((No_ternary_expr_and) node).no_ternary_expr1) && this.no_ternary_expr2.equals(((No_ternary_expr_and) node).no_ternary_expr2);
     }
 }
 
@@ -3892,8 +4034,11 @@ class No_ternary_expr_andand extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.no_ternary_expr1.equals(((No_ternary_expr_andand) node).no_ternary_expr1) && this.no_ternary_expr2.equals(((No_ternary_expr_andand) node).no_ternary_expr2);
     }
 }
 
@@ -3910,8 +4055,11 @@ class No_ternary_expr_or extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.no_ternary_expr1.equals(((No_ternary_expr_or) node).no_ternary_expr1) && this.no_ternary_expr2.equals(((No_ternary_expr_or) node).no_ternary_expr2);
     }
 }
 
@@ -3928,8 +4076,11 @@ class No_ternary_expr_oror extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.no_ternary_expr1.equals(((No_ternary_expr_oror) node).no_ternary_expr1) && this.no_ternary_expr2.equals(((No_ternary_expr_oror) node).no_ternary_expr2);
     }
 }
 
@@ -3946,8 +4097,11 @@ class No_ternary_expr_less extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.no_ternary_expr1.equals(((No_ternary_expr_less) node).no_ternary_expr1) && this.no_ternary_expr2.equals(((No_ternary_expr_less) node).no_ternary_expr2);
     }
 }
 
@@ -3964,8 +4118,11 @@ class No_ternary_expr_lessEqual extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.no_ternary_expr1.equals(((No_ternary_expr_lessEqual) node).no_ternary_expr1) && this.no_ternary_expr2.equals(((No_ternary_expr_lessEqual) node).no_ternary_expr2);
     }
 }
 
@@ -3982,8 +4139,11 @@ class No_ternary_expr_greater extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.no_ternary_expr1.equals(((No_ternary_expr_greater) node).no_ternary_expr1) && this.no_ternary_expr2.equals(((No_ternary_expr_greater) node).no_ternary_expr2);
     }
 }
 
@@ -4000,8 +4160,11 @@ class No_ternary_expr_greaterEqual extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.no_ternary_expr1.equals(((No_ternary_expr_greaterEqual) node).no_ternary_expr1) && this.no_ternary_expr2.equals(((No_ternary_expr_greaterEqual) node).no_ternary_expr2);
     }
 }
 
@@ -4018,8 +4181,11 @@ class No_ternary_expr_equal extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.no_ternary_expr1.equals(((No_ternary_expr_equal) node).no_ternary_expr1) && this.no_ternary_expr2.equals(((No_ternary_expr_equal) node).no_ternary_expr2);
     }
 }
 
@@ -4036,8 +4202,11 @@ class No_ternary_expr_notEqual extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.no_ternary_expr1.equals(((No_ternary_expr_notEqual) node).no_ternary_expr1) && this.no_ternary_expr2.equals(((No_ternary_expr_notEqual) node).no_ternary_expr2);
     }
 }
 
@@ -4051,8 +4220,11 @@ class No_set_expr_no_ternary_expr extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.no_ternary_expr.equals(((No_set_expr_no_ternary_expr) node).no_ternary_expr);
     }
 }
 
@@ -4072,8 +4244,11 @@ class No_set_expr_no_ternary_expr_if_no_ternary_expr extends Node implements Exp
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.no_ternary_expr.equals(((No_set_expr_no_ternary_expr_if_no_ternary_expr) node).no_ternary_expr) && this.no_ternary_expr1.equals(((No_set_expr_no_ternary_expr_if_no_ternary_expr) node).no_ternary_expr1) && this.no_ternary_expr2.equals(((No_set_expr_no_ternary_expr_if_no_ternary_expr) node).no_ternary_expr2);
     }
 }
 
@@ -4090,8 +4265,11 @@ class No_set_expr_no_ternary_expr_colon extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.no_ternary_expr1.equals(((No_set_expr_no_ternary_expr_colon) node).no_ternary_expr1) && this.no_ternary_expr2.equals(((No_set_expr_no_ternary_expr_colon) node).no_ternary_expr2);
     }
 }
 
@@ -4111,8 +4289,11 @@ class No_set_expr_no_ternary_expr_colon_no_ternary_expr extends Node implements 
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.no_ternary_expr1.equals(((No_set_expr_no_ternary_expr_colon_no_ternary_expr) node).no_ternary_expr1) && this.no_ternary_expr2.equals(((No_set_expr_no_ternary_expr_colon_no_ternary_expr) node).no_ternary_expr2) && this.no_ternary_expr3.equals(((No_set_expr_no_ternary_expr_colon_no_ternary_expr) node).no_ternary_expr3);
     }
 }
 
@@ -4126,8 +4307,11 @@ class No_comma_expr_no_set_expr extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.no_set_expr.equals(((No_comma_expr_no_set_expr) node).no_set_expr);
     }
 }
 
@@ -4145,8 +4329,11 @@ class No_comma_expr_equal extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.no_set_expr.equals(((No_comma_expr_equal) node).no_set_expr) && this.no_comma_expr.equals(((No_comma_expr_equal) node).no_comma_expr);
     }
 }
 
@@ -4164,8 +4351,11 @@ class No_comma_expr_plusEqual extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.no_set_expr.equals(((No_comma_expr_plusEqual) node).no_set_expr) && this.no_comma_expr.equals(((No_comma_expr_plusEqual) node).no_comma_expr);
     }
 }
 
@@ -4183,8 +4373,11 @@ class No_comma_expr_minusEqual extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.no_set_expr.equals(((No_comma_expr_minusEqual) node).no_set_expr) && this.no_comma_expr.equals(((No_comma_expr_minusEqual) node).no_comma_expr);
     }
 }
 
@@ -4202,8 +4395,11 @@ class No_comma_expr_multEqual extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.no_set_expr.equals(((No_comma_expr_multEqual) node).no_set_expr) && this.no_comma_expr.equals(((No_comma_expr_multEqual) node).no_comma_expr);
     }
 }
 
@@ -4221,8 +4417,11 @@ class No_comma_expr_divideEqual extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.no_set_expr.equals(((No_comma_expr_divideEqual) node).no_set_expr) && this.no_comma_expr.equals(((No_comma_expr_divideEqual) node).no_comma_expr);
     }
 }
 
@@ -4240,8 +4439,11 @@ class No_comma_expr_dot_multEqual extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.no_set_expr.equals(((No_comma_expr_dot_multEqual) node).no_set_expr) && this.no_comma_expr.equals(((No_comma_expr_dot_multEqual) node).no_comma_expr);
     }
 }
 
@@ -4259,8 +4461,11 @@ class No_comma_expr_dot_divideEqual extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.no_set_expr.equals(((No_comma_expr_dot_divideEqual) node).no_set_expr) && this.no_comma_expr.equals(((No_comma_expr_dot_divideEqual) node).no_comma_expr);
     }
 }
 
@@ -4274,8 +4479,11 @@ class Unop_minus extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.op.equals(((Unop_minus) node).op);
     }
 }
 
@@ -4289,8 +4497,11 @@ class Unop_plus extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.op.equals(((Unop_plus) node).op);
     }
 }
 
@@ -4304,8 +4515,11 @@ class Unop_not extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.op.equals(((Unop_not) node).op);
     }
 }
 
@@ -4319,8 +4533,11 @@ class Unop_increment extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.op.equals(((Unop_increment) node).op);
     }
 }
 
@@ -4334,8 +4551,11 @@ class Unop_decrement extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.op.equals(((Unop_decrement) node).op);
     }
 }
 
@@ -4349,8 +4569,11 @@ class Expr_no_comma_expr extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.no_comma_expr.equals(((Expr_no_comma_expr) node).no_comma_expr);
     }
 }
 
@@ -4367,8 +4590,11 @@ class Expr_comma extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.expr1.equals(((Expr_comma) node).expr1) && this.expr2.equals(((Expr_comma) node).expr2);
     }
 }
 
@@ -4386,8 +4612,11 @@ class Border_expr extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.bornes.equals(((Border_expr) node).bornes) && this.instruction.equals(((Border_expr) node).instruction);
     }
 }
 
@@ -4408,8 +4637,11 @@ class Bornes_id_expr_expr extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.id.equals(((Bornes_id_expr_expr) node).id) && this.expr1.equals(((Bornes_id_expr_expr) node).expr1) && this.expr2.equals(((Bornes_id_expr_expr) node).expr2);
     }
 }
 
@@ -4431,8 +4663,11 @@ class Bornes_id_expr_expr_id extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.id1.equals(((Bornes_id_expr_expr_id) node).id1) && this.id2.equals(((Bornes_id_expr_expr_id) node).id2) && this.expr1.equals(((Bornes_id_expr_expr_id) node).expr1) && this.expr2.equals(((Bornes_id_expr_expr_id) node).expr2);
     }
 }
 
@@ -4447,8 +4682,11 @@ class Catchs extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.instruction.equals(((Catchs) node).instruction);
     }
 }
 
@@ -4460,8 +4698,11 @@ class Instruction_ extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return true;
     }
 }
 
@@ -4475,8 +4716,11 @@ class Instruction_include_string extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.string.equals(((Instruction_include_string) node).string);
     }
 }
 
@@ -4490,8 +4734,11 @@ class Instruction_load_string extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.string.equals(((Instruction_load_string) node).string);
     }
 }
 
@@ -4511,8 +4758,11 @@ class Instruction_try_instructions_catchs extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.Try1.equals(((Instruction_try_instructions_catchs) node).Try1) && this.instructions.equals(((Instruction_try_instructions_catchs) node).instructions) && this.catchs.equals(((Instruction_try_instructions_catchs) node).catchs);
     }
 }
 
@@ -4527,8 +4777,11 @@ class Instruction_expr extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.expr.equals(((Instruction_expr) node).expr);
     }
 }
 
@@ -4542,8 +4795,11 @@ class Instruction_declaration extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.declaration.equals(((Instruction_declaration) node).declaration);
     }
 }
 
@@ -4567,8 +4823,11 @@ class For_loop_idfor_primary_instruction extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.for_loop.equals(((For_loop_idfor_primary_instruction) node).for_loop) && this.idfor.equals(((For_loop_idfor_primary_instruction) node).idfor) && this.primary.equals(((For_loop_idfor_primary_instruction) node).primary) && this.instruction.equals(((For_loop_idfor_primary_instruction) node).instruction);
     }
 }
 
@@ -4596,8 +4855,11 @@ class Instruction_for_loop extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.for_loop.equals(((Instruction_for_loop) node).for_loop) && this.expr1.equals(((Instruction_for_loop) node).expr1) && this.expr2.equals(((Instruction_for_loop) node).expr2) && this.expr3.equals(((Instruction_for_loop) node).expr3) && this.instruction.equals(((Instruction_for_loop) node).instruction);
     }
 }
 
@@ -4625,8 +4887,11 @@ class Instruction_declaration_for_expr_expr_instruction extends Node implements 
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.for_loop.equals(((Instruction_declaration_for_expr_expr_instruction) node).for_loop) && this.declaration_for.equals(((Instruction_declaration_for_expr_expr_instruction) node).declaration_for) && this.expr2.equals(((Instruction_declaration_for_expr_expr_instruction) node).expr2) && this.expr3.equals(((Instruction_declaration_for_expr_expr_instruction) node).expr3) && this.instruction.equals(((Instruction_declaration_for_expr_expr_instruction) node).instruction);
     }
 }
 
@@ -4648,8 +4913,11 @@ class Instruction_while_loop extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.while_loop.equals(((Instruction_while_loop) node).while_loop) && this.expr.equals(((Instruction_while_loop) node).expr) && this.instruction.equals(((Instruction_while_loop) node).instruction);
     }
 }
 
@@ -4668,8 +4936,11 @@ class Instruction_if extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.expr.equals(((Instruction_if) node).expr) && this.instruction.equals(((Instruction_if) node).instruction);
     }
 }
 
@@ -4691,8 +4962,11 @@ class Instruction_if_else extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.expr.equals(((Instruction_if_else) node).expr) && this.instruction1.equals(((Instruction_if_else) node).instruction1) && this.instruction2.equals(((Instruction_if_else) node).instruction2);
     }
 }
 
@@ -4713,8 +4987,11 @@ class Instruction_begin_end extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.begin.equals(((Instruction_begin_end) node).begin) && this.instruction.equals(((Instruction_begin_end) node).instruction) && this.end.equals(((Instruction_begin_end) node).end);
     }
 }
 
@@ -4731,8 +5008,11 @@ class Instruction_border_id_border_expr extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.id.equals(((Instruction_border_id_border_expr) node).id) && this.border_expr.equals(((Instruction_border_id_border_expr) node).border_expr);
     }
 }
 
@@ -4750,8 +5030,11 @@ class Instruction_border_id_array extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.id.equals(((Instruction_border_id_array) node).id) && this.array.equals(((Instruction_border_id_array) node).array);
     }
 }
 
@@ -4763,8 +5046,11 @@ class Instruction_break extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return true;
     }
 }
 
@@ -4776,8 +5062,11 @@ class Instruction_continue extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return true;
     }
 }
 
@@ -4793,8 +5082,11 @@ class Instruction_return extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.expr.equals(((Instruction_return) node).expr);
     }
 }
 
@@ -4808,8 +5100,11 @@ class Idfor_id extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.id.equals(((Idfor_id) node).id);
     }
 }
 
@@ -4826,8 +5121,11 @@ class Idfor_comma_id extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.id1.equals(((Idfor_comma_id) node).id1) && this.id2.equals(((Idfor_comma_id) node).id2);
     }
 }
 
@@ -4847,8 +5145,11 @@ class Idfor_comma_id_comma_id extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.id1.equals(((Idfor_comma_id_comma_id) node).id1) && this.id2.equals(((Idfor_comma_id_comma_id) node).id2) && this.id3.equals(((Idfor_comma_id_comma_id) node).id3);
     }
 }
 
@@ -4860,8 +5161,11 @@ class Try extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return true;
     }
 }
 
@@ -4878,8 +5182,11 @@ class Declaration_for extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.type_of_dcl.equals(((Declaration_for) node).type_of_dcl) && this.list_of_dcls.equals(((Declaration_for) node).list_of_dcls);
     }
 }
 
@@ -4891,8 +5198,11 @@ class For_loop extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return true;
     }
 }
 
@@ -4904,8 +5214,11 @@ class While_loop extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return true;
     }
 }
 
@@ -4917,8 +5230,11 @@ class Begin extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return true;
     }
 }
 
@@ -4930,8 +5246,11 @@ class End extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return true;
     }
 }
 
@@ -4950,8 +5269,11 @@ class Declaration_type_of_dcl_list_of_dcls extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.type_of_dcl.equals(((Declaration_type_of_dcl_list_of_dcls) node).type_of_dcl) && this.list_of_dcls.equals(((Declaration_type_of_dcl_list_of_dcls) node).list_of_dcls);
     }
 }
 
@@ -4973,8 +5295,11 @@ class Declaration_type_of_dcl_list_of_dcls_instruction extends Node implements E
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.type_of_dcl.equals(((Declaration_type_of_dcl_list_of_dcls_instruction) node).type_of_dcl) && this.list_of_dcls.equals(((Declaration_type_of_dcl_list_of_dcls_instruction) node).list_of_dcls) && this.instruction.equals(((Declaration_type_of_dcl_list_of_dcls_instruction) node).instruction);
     }
 }
 
@@ -4992,8 +5317,11 @@ class Declaration_fespace_def_list extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.fespace.equals(((Declaration_fespace_def_list) node).fespace) && this.fespace_def_list.equals(((Declaration_fespace_def_list) node).fespace_def_list);
     }
 }
 
@@ -5008,8 +5336,11 @@ class Declaration_spaceIDs extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.spaceIDs.equals(((Declaration_spaceIDs) node).spaceIDs);
     }
 }
 
@@ -5028,8 +5359,11 @@ class Declaration_function_id_expr extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.function.equals(((Declaration_function_id_expr) node).function) && this.id.equals(((Declaration_function_id_expr) node).id) && this.expr.equals(((Declaration_function_id_expr) node).expr);
     }
 }
 
@@ -5054,8 +5388,11 @@ class Declaration_function_type_of_dcl_id extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.function.equals(((Declaration_function_type_of_dcl_id) node).function) && this.type_of_dcl.equals(((Declaration_function_type_of_dcl_id) node).type_of_dcl) && this.id.equals(((Declaration_function_type_of_dcl_id) node).id) && this.list_of_id_args.equals(((Declaration_function_type_of_dcl_id) node).list_of_id_args) && this.instructions.equals(((Declaration_function_type_of_dcl_id) node).instructions);
     }
 }
 
@@ -5078,8 +5415,11 @@ class Function_id_list_of_id_args extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.function.equals(((Function_id_list_of_id_args) node).function) && this.id.equals(((Function_id_list_of_id_args) node).id) && this.list_of_id_args.equals(((Function_id_list_of_id_args) node).list_of_id_args) && this.no_comma_expr.equals(((Function_id_list_of_id_args) node).no_comma_expr);
     }
 }
 
@@ -5094,8 +5434,11 @@ class Fespace_def_list_fespace_def extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.fespace_def.equals(((Fespace_def_list_fespace_def) node).fespace_def);
     }
 }
 
@@ -5113,8 +5456,11 @@ class Fespace_def_list_comma_fespace_def extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.fespace_def_list.equals(((Fespace_def_list_comma_fespace_def) node).fespace_def_list) && this.fespace_def.equals(((Fespace_def_list_comma_fespace_def) node).fespace_def);
     }
 }
 
@@ -5133,8 +5479,11 @@ class Fespace_def extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.id.equals(((Fespace_def) node).id) && this.parameters_list.equals(((Fespace_def) node).parameters_list);
     }
 }
 
@@ -5152,8 +5501,11 @@ class SpaceIDs_fespace_spaceIDb extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.fespace.equals(((SpaceIDs_fespace_spaceIDb) node).fespace) && this.spaceIDb.equals(((SpaceIDs_fespace_spaceIDb) node).spaceIDb);
     }
 }
 
@@ -5173,8 +5525,11 @@ class SpaceIDs_fespace_array_ID_spaceIDa extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.fespace.equals(((SpaceIDs_fespace_array_ID_spaceIDa) node).fespace) && this.id.equals(((SpaceIDs_fespace_array_ID_spaceIDa) node).id) && this.spaceIDa.equals(((SpaceIDs_fespace_array_ID_spaceIDa) node).spaceIDa);
     }
 }
 
@@ -5189,8 +5544,11 @@ class SpaceIDb_id_space extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.id_space.equals(((SpaceIDb_id_space) node).id_space);
     }
 }
 
@@ -5208,8 +5566,11 @@ class SpaceIDb_comma_id_space extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.spaceIDb.equals(((SpaceIDb_comma_id_space) node).spaceIDb) && this.id_space.equals(((SpaceIDb_comma_id_space) node).id_space);
     }
 }
 
@@ -5224,8 +5585,11 @@ class SpaceIDa_id_array_space extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.id_array_space.equals(((SpaceIDa_id_array_space) node).id_array_space);
     }
 }
 
@@ -5243,8 +5607,11 @@ class SpaceIDa_comma_id_array_space extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.spaceIDa.equals(((SpaceIDa_comma_id_array_space) node).spaceIDa) && this.id_array_space.equals(((SpaceIDa_comma_id_array_space) node).id_array_space);
     }
 }
 
@@ -5258,8 +5625,11 @@ class Fespace123_fespace extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.fespace.equals(((Fespace123_fespace) node).fespace);
     }
 }
 
@@ -5273,8 +5643,11 @@ class Fespace123_fespace1 extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.fespace1.equals(((Fespace123_fespace1) node).fespace1);
     }
 }
 
@@ -5288,8 +5661,11 @@ class Fespace123_fespace3 extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.fespace3.equals(((Fespace123_fespace3) node).fespace3);
     }
 }
 
@@ -5303,8 +5679,11 @@ class Fespace123_fespaceS extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.fespaceS.equals(((Fespace123_fespaceS) node).fespaceS);
     }
 }
 
@@ -5318,8 +5697,11 @@ class Fespace123_fespaceL extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.fespaceL.equals(((Fespace123_fespaceL) node).fespaceL);
     }
 }
 
@@ -5333,8 +5715,11 @@ class Fespace_fespace123 extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.fespace123.equals(((Fespace_fespace123) node).fespace123);
     }
 }
 
@@ -5351,8 +5736,11 @@ class Fespace_fespace123_vector extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.fespace123.equals(((Fespace_fespace123_vector) node).fespace123) && this.id.equals(((Fespace_fespace123_vector) node).id);
     }
 }
 
@@ -5371,8 +5759,11 @@ class Id_array_space_id_no_set_expr extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.id.equals(((Id_array_space_id_no_set_expr) node).id) && this.no_set_expr.equals(((Id_array_space_id_no_set_expr) node).no_set_expr);
     }
 }
 
@@ -5393,8 +5784,11 @@ class Id_array_space_array_list_of_id1_no_set_expr extends Node implements Expre
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return  this.list_of_id1.equals(((Id_array_space_array_list_of_id1_no_set_expr) node).list_of_id1) &&  this.no_set_expr.equals(((Id_array_space_array_list_of_id1_no_set_expr) node).no_set_expr);
     }
 }
 
@@ -5409,8 +5803,11 @@ class Id_space_id extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.id.equals(((Id_space_id) node).id);
     }
 }
 
@@ -5429,8 +5826,11 @@ class Id_space_array_no_set_expr extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.id.equals(((Id_space_array_no_set_expr) node).id) && this.no_set_expr.equals(((Id_space_array_no_set_expr) node).no_set_expr);
     }
 }
 
@@ -5448,8 +5848,11 @@ class Id_space_no_set_expr extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.id.equals(((Id_space_no_set_expr) node).id) && this.no_set_expr.equals(((Id_space_no_set_expr) node).no_set_expr);
     }
 }
 
@@ -5466,8 +5869,11 @@ class Id_space_array_list_of_id1 extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.list_of_id1.equals(((Id_space_array_list_of_id1) node).list_of_id1);
     }
 }
 
@@ -5488,8 +5894,11 @@ class Id_space_array_list_of_id1_array_no_set_expr extends Node implements Expre
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.list_of_id1.equals(((Id_space_array_list_of_id1_array_no_set_expr) node).list_of_id1) && this.no_set_expr.equals(((Id_space_array_list_of_id1_array_no_set_expr) node).no_set_expr);
     }
 }
 
@@ -5508,8 +5917,11 @@ class Id_space_array_list_of_id1_no_set_expr extends Node implements Expression 
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.list_of_id1.equals(((Id_space_array_list_of_id1_no_set_expr) node).list_of_id1) && this.no_set_expr.equals(((Id_space_array_list_of_id1_no_set_expr) node).no_set_expr);
     }
 }
 
@@ -5525,8 +5937,11 @@ class Type_of_dcl_id extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.id.equals(((Type_of_dcl_id) node).id);
     }
 }
 
@@ -5542,8 +5957,11 @@ class Type_of_dcl_id_array extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.id1.equals(((Type_of_dcl_id_array) node).id1) && this.id2.equals(((Type_of_dcl_id_array) node).id2);
     }
 }
 
@@ -5560,8 +5978,11 @@ class Type_of_dcl_id_array_array extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.id1.equals(((Type_of_dcl_id_array_array) node).id1) && this.id2.equals(((Type_of_dcl_id_array_array) node).id2) && this.id3.equals(((Type_of_dcl_id_array_array) node).id3);
     }
 }
 
@@ -5578,8 +5999,11 @@ class Type_of_dcl_id_matrix extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.id1.equals(((Type_of_dcl_id_matrix) node).id1) && this.id2.equals(((Type_of_dcl_id_matrix) node).id2) && this.id3.equals(((Type_of_dcl_id_matrix) node).id3);
     }
 }
 
@@ -5597,8 +6021,11 @@ class Type_of_dcl_id_matrix_array extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.id1.equals(((Type_of_dcl_id_matrix_array) node).id1) && this.id2.equals(((Type_of_dcl_id_matrix_array) node).id2) && this.id3.equals(((Type_of_dcl_id_matrix_array) node).id3) && this.id4.equals(((Type_of_dcl_id_matrix_array) node).id4);
     }
 }
 
@@ -5614,8 +6041,11 @@ class Type_of_dcl_id_vector extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.id1.equals(((Type_of_dcl_id_vector) node).id1) && this.id2.equals(((Type_of_dcl_id_vector) node).id2);
     }
 }
 
@@ -5632,8 +6062,11 @@ class Type_of_dcl_id_vector_array extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.id1.equals(((Type_of_dcl_id_vector_array) node).id1) && this.id2.equals(((Type_of_dcl_id_vector_array) node).id2) && this.id3.equals(((Type_of_dcl_id_vector_array) node).id3);
     }
 }
 
@@ -5651,8 +6084,11 @@ class Type_of_dcl_id_vector_matrix extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.id1.equals(((Type_of_dcl_id_vector_matrix) node).id1) && this.id2.equals(((Type_of_dcl_id_vector_matrix) node).id2) && this.id3.equals(((Type_of_dcl_id_vector_matrix) node).id3) && this.id4.equals(((Type_of_dcl_id_vector_matrix) node).id4);
     }
 }
 
@@ -5667,8 +6103,11 @@ class Parameters_list_no_set_expr extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.no_set_expr.equals(((Parameters_list_no_set_expr) node).no_set_expr);
     }
 }
 
@@ -5684,8 +6123,11 @@ class Parameters_list_fespace_id extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.fespace.equals(((Parameters_list_fespace_id) node).fespace) && this.id.equals(((Parameters_list_fespace_id) node).id);
     }
 }
 
@@ -5701,8 +6143,11 @@ class Parameters_list_fespace1_id extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.fespace1.equals(((Parameters_list_fespace1_id) node).fespace1) && this.id.equals(((Parameters_list_fespace1_id) node).id);
     }
 }
 
@@ -5718,8 +6163,11 @@ class Parameters_list_fespace3_id extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.fespace3.equals(((Parameters_list_fespace3_id) node).fespace3) && this.id.equals(((Parameters_list_fespace3_id) node).id);
     }
 }
 
@@ -5735,8 +6183,11 @@ class Parameters_list_fespaceS_id extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.fespaceS.equals(((Parameters_list_fespaceS_id) node).fespaceS) && this.id.equals(((Parameters_list_fespaceS_id) node).id);
     }
 }
 
@@ -5752,8 +6203,11 @@ class Parameters_list_fespaceL_id extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.fespaceL.equals(((Parameters_list_fespaceL_id) node).fespaceL) && this.id.equals(((Parameters_list_fespaceL_id) node).id);
     }
 }
 
@@ -5771,8 +6225,11 @@ class Parameters_list_id_no_set_expr extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.id.equals(((Parameters_list_id_no_set_expr) node).id) && this.no_set_expr.equals(((Parameters_list_id_no_set_expr) node).no_set_expr);
     }
 }
 
@@ -5790,8 +6247,11 @@ class Parameters_list_comma_no_set_expr extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.parameters_list.equals(((Parameters_list_comma_no_set_expr) node).parameters_list) && this.no_set_expr.equals(((Parameters_list_comma_no_set_expr) node).no_set_expr);
     }
 }
 
@@ -5812,8 +6272,11 @@ class Parameters_list_comma_id_no_set_expr extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.parameters_list.equals(((Parameters_list_comma_id_no_set_expr) node).parameters_list) && this.id.equals(((Parameters_list_comma_id_no_set_expr) node).id) && this.no_set_expr.equals(((Parameters_list_comma_id_no_set_expr) node).no_set_expr);
     }
 }
 
@@ -5828,8 +6291,11 @@ class List_of_dcls_id extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.id.equals(((List_of_dcls_id) node).id);
     }
 }
 
@@ -5848,8 +6314,11 @@ class List_of_dcls_id_no_comma_expr extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.id.equals(((List_of_dcls_id_no_comma_expr) node).id) && this.no_comma_expr.equals(((List_of_dcls_id_no_comma_expr) node).no_comma_expr);
     }
 }
 
@@ -5868,8 +6337,11 @@ class List_of_dcls_id_parameters_list extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.id.equals(((List_of_dcls_id_parameters_list) node).id) && this.parameters_list.equals(((List_of_dcls_id_parameters_list) node).parameters_list);
     }
 }
 
@@ -5887,8 +6359,11 @@ class List_of_dcls_comma extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.list_of_dcls1.equals(((List_of_dcls_comma) node).list_of_dcls1) && this.list_of_dcls2.equals(((List_of_dcls_comma) node).list_of_dcls2);
     }
 }
 
@@ -5903,8 +6378,11 @@ class Id_id extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.id.equals(((Id_id) node).id);
     }
 }
 
@@ -5919,8 +6397,11 @@ class Id_fespace extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.fespace.equals(((Id_fespace) node).fespace);
     }
 }
 
@@ -5935,8 +6416,11 @@ class Id_fespace3 extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.fespace3.equals(((Id_fespace3) node).fespace3);
     }
 }
 
@@ -5951,8 +6435,11 @@ class Id_fespaceS extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.fespaceS.equals(((Id_fespaceS) node).fespaceS);
     }
 }
 
@@ -5967,8 +6454,11 @@ class Id_fespaceL extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.fespaceL.equals(((Id_fespaceL) node).fespaceL);
     }
 }
 
@@ -5983,8 +6473,11 @@ class Id_fespace1 extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.fespace1.equals(((Id_fespace1) node).fespace1);
     }
 }
 
@@ -5999,8 +6492,11 @@ class List_of_id1_id extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.id.equals(((List_of_id1_id) node).id);
     }
 }
 
@@ -6019,8 +6515,11 @@ class List_of_id1_comma_id extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.list_of_id1.equals(((List_of_id1_comma_id) node).list_of_id1) && this.id.equals(((List_of_id1_comma_id) node).id);
     }
 }
 
@@ -6031,8 +6530,11 @@ class List_of_id_args_ extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return true;
     }
 }
 
@@ -6047,8 +6549,11 @@ class List_of_id_args_id extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.id.equals(((List_of_id_args_id) node).id);
     }
 }
 
@@ -6066,8 +6571,11 @@ class List_of_id_args_set_no_comma_expr_to_id extends Node implements Expression
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.id.equals(((List_of_id_args_set_no_comma_expr_to_id) node).id) && this.no_comma_expr.equals(((List_of_id_args_set_no_comma_expr_to_id) node).no_comma_expr);
     }
 }
 
@@ -6084,8 +6592,11 @@ class List_of_id_args_fespace_id extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.fespace.equals(((List_of_id_args_fespace_id) node).fespace) && this.id.equals(((List_of_id_args_fespace_id) node).id);
     }
 }
 
@@ -6102,8 +6613,11 @@ class List_of_id_args_fespace_and_id extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.fespace.equals(((List_of_id_args_fespace_and_id) node).fespace) && this.id.equals(((List_of_id_args_fespace_and_id) node).id);
     }
 }
 
@@ -6120,8 +6634,11 @@ class List_of_id_args_fespace3_id extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.fespace3.equals(((List_of_id_args_fespace3_id) node).fespace3) && this.id.equals(((List_of_id_args_fespace3_id) node).id);
     }
 }
 
@@ -6138,8 +6655,11 @@ class List_of_id_args_fespace3_and_id extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.fespace3.equals(((List_of_id_args_fespace3_and_id) node).fespace3) && this.id.equals(((List_of_id_args_fespace3_and_id) node).id);
     }
 }
 
@@ -6156,8 +6676,11 @@ class List_of_id_args_fespaceS_id extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.fespaceS.equals(((List_of_id_args_fespaceS_id) node).fespaceS) && this.id.equals(((List_of_id_args_fespaceS_id) node).id);
     }
 }
 
@@ -6174,8 +6697,11 @@ class List_of_id_args_fespaceS_and_id extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.fespaceS.equals(((List_of_id_args_fespaceS_and_id) node).fespaceS) && this.id.equals(((List_of_id_args_fespaceS_and_id) node).id);
     }
 }
 
@@ -6192,8 +6718,11 @@ class List_of_id_args_fespaceL_id extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.fespaceL.equals(((List_of_id_args_fespaceL_id) node).fespaceL) && this.id.equals(((List_of_id_args_fespaceL_id) node).id);
     }
 }
 
@@ -6210,8 +6739,11 @@ class List_of_id_args_fespaceL_and_id extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.fespaceL.equals(((List_of_id_args_fespaceL_and_id) node).fespaceL) && this.id.equals(((List_of_id_args_fespaceL_and_id) node).id);
     }
 }
 
@@ -6228,8 +6760,11 @@ class List_of_id_args_type_of_dcl_id extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.type_of_dcl.equals(((List_of_id_args_type_of_dcl_id) node).type_of_dcl) && this.id.equals(((List_of_id_args_type_of_dcl_id) node).id);
     }
 }
 
@@ -6246,8 +6781,11 @@ class List_of_id_args_type_of_dcl_and_id extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.type_of_dcl.equals(((List_of_id_args_type_of_dcl_and_id) node).type_of_dcl) && this.id.equals(((List_of_id_args_type_of_dcl_and_id) node).id);
     }
 }
 
@@ -6263,8 +6801,11 @@ class List_of_id_args_array extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.list_of_id_args.equals(((List_of_id_args_array) node).list_of_id_args);
     }
 }
 
@@ -6281,8 +6822,11 @@ class List_of_id_args_comma_id extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.list_of_id_args.equals(((List_of_id_args_comma_id) node).list_of_id_args) && this.id.equals(((List_of_id_args_comma_id) node).id);
     }
 }
 
@@ -6300,8 +6844,11 @@ class List_of_id_args_comma_array extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.list_of_id_args1.equals(((List_of_id_args_comma_array) node).list_of_id_args1) && this.list_of_id_args2.equals(((List_of_id_args_comma_array) node).list_of_id_args2);
     }
 }
 
@@ -6321,8 +6868,11 @@ class List_of_id_args_comma_id_no_comma_expr extends Node implements Expression 
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.list_of_id_args.equals(((List_of_id_args_comma_id_no_comma_expr) node).list_of_id_args) && this.id.equals(((List_of_id_args_comma_id_no_comma_expr) node).id) && this.no_comma_expr.equals(((List_of_id_args_comma_id_no_comma_expr) node).no_comma_expr);
     }
 }
 
@@ -6341,8 +6891,11 @@ class List_of_id_args_comma_fespace_id extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.list_of_id_args.equals(((List_of_id_args_comma_fespace_id) node).list_of_id_args) && this.id.equals(((List_of_id_args_comma_fespace_id) node).id) && this.fespace.equals(((List_of_id_args_comma_fespace_id) node).fespace);
     }
 }
 
@@ -6361,8 +6914,11 @@ class List_of_id_args_comma_fespace_and_id extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.list_of_id_args.equals(((List_of_id_args_comma_fespace_and_id) node).list_of_id_args) && this.id.equals(((List_of_id_args_comma_fespace_and_id) node).id) && this.fespace.equals(((List_of_id_args_comma_fespace_and_id) node).fespace);
     }
 }
 
@@ -6381,8 +6937,11 @@ class List_of_id_args_comma_fespace3_id extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.list_of_id_args.equals(((List_of_id_args_comma_fespace3_id) node).list_of_id_args) && this.id.equals(((List_of_id_args_comma_fespace3_id) node).id) && this.fespace3.equals(((List_of_id_args_comma_fespace3_id) node).fespace3);
     }
 }
 
@@ -6401,8 +6960,11 @@ class List_of_id_args_comma_fespace3_and_id extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.list_of_id_args.equals(((List_of_id_args_comma_fespace3_and_id) node).list_of_id_args) && this.id.equals(((List_of_id_args_comma_fespace3_and_id) node).id) && this.fespace3.equals(((List_of_id_args_comma_fespace3_and_id) node).fespace3);
     }
 }
 
@@ -6421,8 +6983,11 @@ class List_of_id_args_comma_fespaceS_id extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.list_of_id_args.equals(((List_of_id_args_comma_fespaceS_id) node).list_of_id_args) && this.id.equals(((List_of_id_args_comma_fespaceS_id) node).id) && this.fespaceS.equals(((List_of_id_args_comma_fespaceS_id) node).fespaceS);
     }
 }
 
@@ -6441,8 +7006,11 @@ class List_of_id_args_comma_fespaceS_and_id extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.list_of_id_args.equals(((List_of_id_args_comma_fespaceS_and_id) node).list_of_id_args) && this.id.equals(((List_of_id_args_comma_fespaceS_and_id) node).id) && this.fespaceS.equals(((List_of_id_args_comma_fespaceS_and_id) node).fespaceS);
     }
 }
 
@@ -6461,8 +7029,11 @@ class List_of_id_args_comma_fespaceL_id extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.list_of_id_args.equals(((List_of_id_args_comma_fespaceL_id) node).list_of_id_args) && this.id.equals(((List_of_id_args_comma_fespaceL_id) node).id) && this.fespaceL.equals(((List_of_id_args_comma_fespaceL_id) node).fespaceL);
     }
 }
 
@@ -6481,8 +7052,11 @@ class List_of_id_args_comma_fespaceL_and_id extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.list_of_id_args.equals(((List_of_id_args_comma_fespaceL_and_id) node).list_of_id_args) && this.id.equals(((List_of_id_args_comma_fespaceL_and_id) node).id) && this.fespaceL.equals(((List_of_id_args_comma_fespaceL_and_id) node).fespaceL);
     }
 }
 
@@ -6502,8 +7076,11 @@ class List_of_id_args_comma_type_of_dcl_id extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.list_of_id_args.equals(((List_of_id_args_comma_type_of_dcl_id) node).list_of_id_args) && this.type_of_dcl.equals(((List_of_id_args_comma_type_of_dcl_id) node).type_of_dcl) && this.id.equals(((List_of_id_args_comma_type_of_dcl_id) node).id);
     }
 }
 
@@ -6524,8 +7101,11 @@ class List_of_id_args_comma_type_of_dcl_and_id extends Node implements Expressio
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.list_of_id_args.equals(((List_of_id_args_comma_type_of_dcl_and_id) node).list_of_id_args) && this.type_of_dcl.equals(((List_of_id_args_comma_type_of_dcl_and_id) node).type_of_dcl) && this.id.equals(((List_of_id_args_comma_type_of_dcl_and_id) node).id);
     }
 }
 
@@ -6539,8 +7119,11 @@ class Instructions_ extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.instruction.equals(((Instructions_) node).instruction);
     }
 }
 
@@ -6558,8 +7141,11 @@ class Instructions_instruction extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.instructions.equals(((Instructions_instruction) node).instructions) && this.instruction.equals(((Instructions_instruction) node).instruction);
     }
 }
 
@@ -6573,7 +7159,10 @@ class Input extends Node implements Expression {
     }
 
     @Override
-    public boolean equals(Expression node) {
-        return false;
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.instructions.equals(((Input) node).instructions);
     }
 }
