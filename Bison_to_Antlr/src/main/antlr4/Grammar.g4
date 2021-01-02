@@ -47,6 +47,7 @@ id
             | FESPACES                                      #id_fespaceS
             | FESPACEL                                      #id_fespaceL
             | FESPACE1                                      #id_fespace1
+            | templatevar                                   #id_templatevar //*
             ;
 
 list_of_dcls
@@ -54,6 +55,7 @@ list_of_dcls
             | ID '=' no_comma_expr                          #list_of_dcls_id_no_comma_expr
             | ID '(' parameters_list ')'                    #list_of_dcls_id_parameters_list
             | list_of_dcls ',' list_of_dcls                 #list_of_dcls_comma
+            | templatevar                                   #list_of_dcls_templatevar //*
             ;
 
 parameters_list
@@ -68,15 +70,16 @@ parameters_list
             | parameters_list ',' id '=' no_set_expr        #parameters_list_comma_id_no_set_expr
             ;
 
-type_of_dcl
-            : ID /*TYPE*/                                   #type_of_dcl_id
-            | ID '[' ID ']' /*TYPE TYPE*/                   #type_of_dcl_id_array
+type_of_dcl //TYPE
+            : ID                                            #type_of_dcl_id
+            | ID '[' ID ']'                                 #type_of_dcl_id_array
             | ID '[' ID ']' '[' ID ']'                      #type_of_dcl_id_array_array
             | ID '[' ID ',' ID ']'                          #type_of_dcl_id_matrix
             | ID '[' ID ',' ID ']' '[' ID ']'               #type_of_dcl_id_matrix_array
             | ID '<' ID '>'                                 #type_of_dcl_id_vector
             | ID '<' ID '>' '[' ID ']'                      #type_of_dcl_id_vector_array
             | ID '<' ID '>' '[' ID ',' ID ']'               #type_of_dcl_id_vector_matrix
+            | templatevar                                   #type_of_dcl_templatevar //*
             ;
 
 id_space
@@ -86,11 +89,13 @@ id_space
             | '[' list_of_id1 ']'                           #id_space_array_list_of_id1
             | '[' list_of_id1 ']' '[' no_set_expr ']'       #id_space_array_list_of_id1_array_no_set_expr
             | '[' list_of_id1 ']' '=' no_set_expr           #id_space_array_list_of_id1_no_set_expr
+            | templatevar                                   #id_space_templatevar //*
             ;
 
 id_array_space
             : ID '(' no_set_expr ')'                        #id_array_space_id_no_set_expr
             | '[' list_of_id1 ']' '(' no_set_expr ')'       #id_array_space_array_list_of_id1_no_set_expr
+            | templatevar                                   #id_array_space_templatevar //*
             ;
 
 fespace123
@@ -99,6 +104,7 @@ fespace123
             | FESPACE3                                      #fespace123_fespace3
             | FESPACES                                      #fespace123_fespaceS
             | FESPACEL                                      #fespace123_fespaceL
+            | templatevar                                   #fespace123_templatevar //*
             ;
 
 fespace
@@ -130,12 +136,12 @@ fespace_def_list
 
 declaration
             : type_of_dcl list_of_dcls ';'                  #declaration_type_of_dcl_list_of_dcls
-            | type_of_dcl list_of_dcls '=' instruction      #declaration_type_of_dcl_list_of_dcls_instruction   //added
             | FESPACE fespace_def_list ';'                  #declaration_fespace_def_list
             | spaceIDs ';'                                  #declaration_spaceIDs
             | FUNCTION ID '=' expr ';'                      #declaration_function_id_expr
             | FUNCTION type_of_dcl ID '(' list_of_id_args ')' '{' instructions'}'   #declaration_function_type_of_dcl_id
             | FUNCTION ID '(' list_of_id_args ')' '=' no_comma_expr ';'     #function_id_list_of_id_args
+            | templatevar                                   #declaration_templatevar //*
             ;
 
 begin: '{' ;
@@ -157,9 +163,9 @@ idfor
 instruction
             : ';'                                           #instruction_
             | 'include' STRING                              #instruction_include_string
-            | 'load' STRING                                 #instruciotn_load_string //*
-            | try_ '{' instructions '}' catchs               #instruction_try_instructions_catchs
-            | expr ';'                                      #instruction_expr
+            | 'load' STRING                                 #instruciotn_load_string
+            | try_ '{' instructions '}' catchs              #instruction_try_instructions_catchs
+            | expr                                          #instruction_expr //;
             | declaration                                   #instruction_declaration
             | for_loop '[' idfor ':' primary ']' instruction    #for_loop_idfor_primary_instruction
             | for_loop '(' expr ';' expr ';' expr ')' instruction   #instruction_for_loop
@@ -204,51 +210,51 @@ no_comma_expr
             | no_set_expr '-=' no_comma_expr                #no_comma_expr_minusEqual
             | no_set_expr '*=' no_comma_expr                #no_comma_expr_multEqual
             | no_set_expr '/=' no_comma_expr                #no_comma_expr_divideEqual
-            | no_set_expr '.*=' no_comma_expr               #no_comma_expr_dot_multEqual //*
-            | no_set_expr './=' no_comma_expr               #no_comma_expr_dot_divideEqual //*
+            | no_set_expr '.*=' no_comma_expr               #no_comma_expr_dot_multEqual
+            | no_set_expr './=' no_comma_expr               #no_comma_expr_dot_divideEqual
             ;
 
 no_set_expr
-            : no_ternary_expr                               #no_set_expr_no_ternary_expr //*
-            | no_ternary_expr '?' no_ternary_expr ':' no_ternary_expr   # no_set_expr_no_ternary_expr_if_no_ternary_expr //modified*
+            : no_ternary_expr                               #no_set_expr_no_ternary_expr
+            | no_ternary_expr '?' no_ternary_expr ':' no_ternary_expr   # no_set_expr_no_ternary_expr_if_no_ternary_expr
             | no_ternary_expr ':' no_ternary_expr           #no_set_expr_no_ternary_expr_colon
             | no_ternary_expr ':' no_ternary_expr ':' no_ternary_expr   #no_set_expr_no_ternary_expr_colon_no_ternary_expr
             ;
 
 no_ternary_expr
-            : unary_expr                                    #no_ternary_expr_unary_expr  //*
-            | no_ternary_expr '*' no_ternary_expr           #no_ternary_expr_multiply  //*
-            | no_ternary_expr '.*' no_ternary_expr          #no_ternary_expr_dotMultiply //*
-            | no_ternary_expr './' no_ternary_expr          #no_ternary_expr_dotDivide  //*
-            | no_ternary_expr '/' no_ternary_expr           #no_ternary_expr_divide  //*
-            | no_ternary_expr '%' no_ternary_expr           #no_ternary_expr_modulus  //*
-            | no_ternary_expr '+' no_ternary_expr           #no_ternary_expr_plus  //*
-            | no_ternary_expr '-' no_ternary_expr           #no_ternary_expr_minus  //*
-            | no_ternary_expr '<<' no_ternary_expr          #no_ternary_expr_out  //*
-            | no_ternary_expr '>>' no_ternary_expr          #no_ternary_expr_in  //*
-            | no_ternary_expr '&' no_ternary_expr           #no_ternary_expr_and  //*
-            | no_ternary_expr '&&' no_ternary_expr          #no_ternary_expr_andand  //*
-            | no_ternary_expr '|' no_ternary_expr           #no_ternary_expr_or  //*
-            | no_ternary_expr '||' no_ternary_expr          #no_ternary_expr_oror  //*
-            | no_ternary_expr '<' no_ternary_expr           #no_ternary_expr_less  //*
-            | no_ternary_expr '<=' no_ternary_expr          #no_ternary_expr_lessEqual  //*
-            | no_ternary_expr '>' no_ternary_expr           #no_ternary_expr_greater  //*
-            | no_ternary_expr '>=' no_ternary_expr          #no_ternary_expr_greaterEqual  //*
-            | no_ternary_expr '==' no_ternary_expr          #no_ternary_expr_equal  //*
-            | no_ternary_expr '!=' no_ternary_expr          #no_ternary_expr_notEqual  //*
+            : unary_expr                                    #no_ternary_expr_unary_expr
+            | no_ternary_expr '*' no_ternary_expr           #no_ternary_expr_multiply
+            | no_ternary_expr '.*' no_ternary_expr          #no_ternary_expr_dotMultiply
+            | no_ternary_expr './' no_ternary_expr          #no_ternary_expr_dotDivide
+            | no_ternary_expr '/' no_ternary_expr           #no_ternary_expr_divide
+            | no_ternary_expr '%' no_ternary_expr           #no_ternary_expr_modulus
+            | no_ternary_expr '+' no_ternary_expr           #no_ternary_expr_plus
+            | no_ternary_expr '-' no_ternary_expr           #no_ternary_expr_minus
+            | no_ternary_expr '<<' no_ternary_expr          #no_ternary_expr_out
+            | no_ternary_expr '>>' no_ternary_expr          #no_ternary_expr_in
+            | no_ternary_expr '&' no_ternary_expr           #no_ternary_expr_and
+            | no_ternary_expr '&&' no_ternary_expr          #no_ternary_expr_andand
+            | no_ternary_expr '|' no_ternary_expr           #no_ternary_expr_or
+            | no_ternary_expr '||' no_ternary_expr          #no_ternary_expr_oror
+            | no_ternary_expr '<' no_ternary_expr           #no_ternary_expr_less
+            | no_ternary_expr '<=' no_ternary_expr          #no_ternary_expr_lessEqual
+            | no_ternary_expr '>' no_ternary_expr           #no_ternary_expr_greater
+            | no_ternary_expr '>=' no_ternary_expr          #no_ternary_expr_greaterEqual
+            | no_ternary_expr '==' no_ternary_expr          #no_ternary_expr_equal
+            | no_ternary_expr '!=' no_ternary_expr          #no_ternary_expr_notEqual
             ;
 
 sub_script_expr
-            : no_ternary_expr                               #sub_script_expr_no_ternary_expr//modified*
-            | ':'                                           #sub_script_expr_colon//*
-            | no_ternary_expr ':' no_ternary_expr           #sub_script_expr_no_ternary_expr_colon_no_ternary_expr//modifed*
-            | no_ternary_expr ':' no_ternary_expr ':' no_ternary_expr   #sub_script_expr_no_ternary_expr_colon_no_ternary_expr_colon_no_ternary_expr//modified*
+            : no_ternary_expr                               #sub_script_expr_no_ternary_expr
+            | ':'                                           #sub_script_expr_colon
+            | no_ternary_expr ':' no_ternary_expr           #sub_script_expr_no_ternary_expr_colon_no_ternary_expr
+            | no_ternary_expr ':' no_ternary_expr ':' no_ternary_expr   #sub_script_expr_no_ternary_expr_colon_no_ternary_expr_colon_no_ternary_expr
             ;
 
 parameterstype: sub_script_expr ',' parameters;
 
 parameters
-            :                                               #parameters_ //modified
+            :                                               #parameters_
             | FESPACE                                       #parameters_fespace
             | FESPACE1                                      #parameters_fespace1
             | FESPACE3                                      #parameters_fespace3
@@ -261,7 +267,7 @@ parameters
             | parameters ',' FESPACE3                       #parameters_comma_fespace3
             | parameters ',' FESPACES                       #parameters_comma_fespaceS
             | parameters ',' FESPACEL                       #parameters_comma_fespaceL
-            | parameters ',' sub_script_expr                #parameters_comma_sub_script_expr //modified
+            | parameters ',' sub_script_expr                #parameters_comma_sub_script_expr
             | parameters ',' id '=' no_set_expr             #parameters_comma_id_equal_no_set_expr
             ;
 
@@ -293,7 +299,7 @@ primary
             | CNUM                                          #primary_cnum
             | STRING                                        #primary_string
             | primary '(' parameters ')'                    #primary_parameters
-            | primary '[' sub_script_expr ']'               #primary_array_sub_script_expr //modified
+            | primary '[' sub_script_expr ']'               #primary_array_sub_script_expr
             | primary '[' sub_script_expr ',' sub_script_expr ']'   #primary_matrix
             | primary '[' ']'                               #primary_empty_array
             | primary '.' ID                                #primary_dot_id
@@ -309,13 +315,14 @@ primary
             | FESPACEL '(' parameters ')'                   #primary_fespaceL_parameters
             | primary '++'                                  #primary_increment
             | primary '--'                                  #primary_decrement
-            | ID '(' sub_script_expr ')' /*TYPE*/           #primary_id_sub_script_expr //modified
+            | ID '(' sub_script_expr ')' /*TYPE*/           #primary_id_sub_script_expr
             | ID '(' parameterstype ')' /*TYPE*/            #primary_id_parameterstype
             | '(' expr ')'                                  #primary_expr
             | '[' array ']'                                 #primary_array_
+            | templatevar                                   #primary_templatevar //*
             ;
 
-templatevar: '$' '{' ID ':' ID '}'                          #templateVar ;
+templatevar: '$' '{' ID ':' ID '}' ;
 
 FESPACE  : 'fespace';
 FESPACE1 : 'fespace1';
@@ -324,11 +331,38 @@ FESPACES : 'fespaces';
 FESPACEL : 'fespacel';
 FUNCTION : 'func';
 //TYPE     : [a-zA-Z]*;
-STRING   : '"' .*? '"';
-ID       : [a-zA-Z][a-zA-Z0-9_]*;
-LNUM     : [0-9e]+;
-DNUM     : [0-9e]+ (['.'0-9e]+)?;
+STRING   : '"' (~["\\\r\n] | EscapeSequence)* '"';
+ID       : Letter LetterOrDigit*;
+LNUM     : ('0' | [1-9] (Digits? | '_'+ Digits)) [lL]?;
+DNUM     : (Digits '.' Digits? | '.' Digits) ExponentPart? [fFdD]?
+         | Digits (ExponentPart [fFdD]? | [fFdD])
+         ;
 CNUM     : [-]? DNUM? [+-]? DNUM?[i];
-WS       : [ \n\u000D] -> skip ;
-COMMENT:            '/*' .*? '*/'    -> channel(HIDDEN);
-LINE_COMMENT:       '//' ~[\r\n]*    -> channel(HIDDEN);
+WS       : [ \t\n\u000D] -> skip ;
+COMMENT  :            '/*' .*? '*/'    -> channel(HIDDEN);
+LINE_COMMENT  :       '//' ~[\r\n]*    -> channel(HIDDEN);
+
+fragment ExponentPart
+    : [eE] [+-]? Digits
+    ;
+
+fragment EscapeSequence
+    : '\\' [btnfr"'\\]
+    | '\\' ([0-3]? [0-7])? [0-7]
+    | '\\' 'u'+ HexDigit HexDigit HexDigit HexDigit
+    ;
+fragment HexDigit
+    : [0-9a-fA-F]
+    ;
+fragment Digits
+    : [0-9] ([0-9_]* [0-9])?
+    ;
+fragment LetterOrDigit
+    : Letter
+    | [0-9]
+    ;
+fragment Letter
+    : [a-zA-Z_]
+    | ~[\u0000-\u007F\uD800-\uDBFF]
+    | [\uD800-\uDBFF] [\uDC00-\uDFFF]
+    ;

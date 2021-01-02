@@ -1,6 +1,8 @@
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.TerminalNode;
+
+import java.util.Map;
 import java.util.Stack;
 import java.io.PrintStream;
 
@@ -500,6 +502,18 @@ public class Listener implements GrammarListener{
     }
 
     @Override
+    public void enterId_templatevar(GrammarParser.Id_templatevarContext ctx) {
+
+    }
+
+    @Override
+    public void exitId_templatevar(GrammarParser.Id_templatevarContext ctx) {
+        Expression templatevar = (Expression) this.stack.pop();
+        Templatevar_ node = new Templatevar_(templatevar);
+        this.stack.add(node);
+    }
+
+    @Override
     public void enterList_of_dcls_id_no_comma_expr(GrammarParser.List_of_dcls_id_no_comma_exprContext ctx) {
 
     }
@@ -533,6 +547,18 @@ public class Listener implements GrammarListener{
         Expression list_of_dcls2 = (Expression) this.stack.pop();
         Expression list_of_dcls1 = (Expression) this.stack.pop();
         List_of_dcls_comma node = new List_of_dcls_comma(list_of_dcls1, list_of_dcls2);
+        this.stack.add(node);
+    }
+
+    @Override
+    public void enterList_of_dcls_templatevar(GrammarParser.List_of_dcls_templatevarContext ctx) {
+
+    }
+
+    @Override
+    public void exitList_of_dcls_templatevar(GrammarParser.List_of_dcls_templatevarContext ctx) {
+        Expression templatevar = (Expression) this.stack.pop();
+        Templatevar_ node = new Templatevar_(templatevar);
         this.stack.add(node);
     }
 
@@ -742,6 +768,18 @@ public class Listener implements GrammarListener{
     }
 
     @Override
+    public void enterType_of_dcl_templatevar(GrammarParser.Type_of_dcl_templatevarContext ctx) {
+
+    }
+
+    @Override
+    public void exitType_of_dcl_templatevar(GrammarParser.Type_of_dcl_templatevarContext ctx) {
+        Expression templatevar = (Expression) this.stack.pop();
+        Templatevar_ node = new Templatevar_(templatevar);
+        this.stack.add(node);
+    }
+
+    @Override
     public void enterId_space_id(GrammarParser.Id_space_idContext ctx) {
 
     }
@@ -815,6 +853,18 @@ public class Listener implements GrammarListener{
     }
 
     @Override
+    public void enterId_space_templatevar(GrammarParser.Id_space_templatevarContext ctx) {
+
+    }
+
+    @Override
+    public void exitId_space_templatevar(GrammarParser.Id_space_templatevarContext ctx) {
+        Expression templatevar = (Expression) this.stack.pop();
+        Templatevar_ node = new Templatevar_(templatevar);
+        this.stack.add(node);
+    }
+
+    @Override
     public void enterId_array_space_id_no_set_expr(GrammarParser.Id_array_space_id_no_set_exprContext ctx) {
 
     }
@@ -836,6 +886,18 @@ public class Listener implements GrammarListener{
         Expression no_set_expr = (Expression) this.stack.pop();
         Expression list_of_id1 = (Expression) this.stack.pop();
         Id_array_space_array_list_of_id1_no_set_expr node = new Id_array_space_array_list_of_id1_no_set_expr(list_of_id1, no_set_expr);
+        this.stack.add(node);
+    }
+
+    @Override
+    public void enterId_array_space_templatevar(GrammarParser.Id_array_space_templatevarContext ctx) {
+
+    }
+
+    @Override
+    public void exitId_array_space_templatevar(GrammarParser.Id_array_space_templatevarContext ctx) {
+        Expression templatevar = (Expression) this.stack.pop();
+        Templatevar_ node = new Templatevar_(templatevar);
         this.stack.add(node);
     }
 
@@ -891,6 +953,18 @@ public class Listener implements GrammarListener{
     @Override
     public void exitFespace123_fespaceL(GrammarParser.Fespace123_fespaceLContext ctx) {
         Fespace123_fespaceL node = new Fespace123_fespaceL(ctx.FESPACEL().getText());
+        this.stack.add(node);
+    }
+
+    @Override
+    public void enterFespace123_templatevar(GrammarParser.Fespace123_templatevarContext ctx) {
+
+    }
+
+    @Override
+    public void exitFespace123_templatevar(GrammarParser.Fespace123_templatevarContext ctx) {
+        Expression templatevar = (Expression) this.stack.pop();
+        Templatevar_ node = new Templatevar_(templatevar);
         this.stack.add(node);
     }
 
@@ -1045,20 +1119,6 @@ public class Listener implements GrammarListener{
     }
 
     @Override
-    public void enterDeclaration_type_of_dcl_list_of_dcls_instruction(GrammarParser.Declaration_type_of_dcl_list_of_dcls_instructionContext ctx) {
-
-    }
-
-    @Override
-    public void exitDeclaration_type_of_dcl_list_of_dcls_instruction(GrammarParser.Declaration_type_of_dcl_list_of_dcls_instructionContext ctx) {
-        Expression instruction = (Expression) this.stack.pop();
-        Expression list_of_dcls = (Expression) this.stack.pop();
-        Expression type_of_dcl = (Expression) this.stack.pop();
-        Declaration_type_of_dcl_list_of_dcls_instruction node = new Declaration_type_of_dcl_list_of_dcls_instruction(type_of_dcl, list_of_dcls, instruction);
-        this.stack.add(node);
-    }
-
-    @Override
     public void enterDeclaration_fespace_def_list(GrammarParser.Declaration_fespace_def_listContext ctx) {
 
     }
@@ -1118,6 +1178,18 @@ public class Listener implements GrammarListener{
         Expression no_comma_expr = (Expression) this.stack.pop();
         Expression list_of_id_args = (Expression) this.stack.pop();
         Function_id_list_of_id_args node = new Function_id_list_of_id_args(ctx.FUNCTION().getText(), ctx.ID().getText(), list_of_id_args, no_comma_expr);
+        this.stack.add(node);
+    }
+
+    @Override
+    public void enterDeclaration_templatevar(GrammarParser.Declaration_templatevarContext ctx) {
+
+    }
+
+    @Override
+    public void exitDeclaration_templatevar(GrammarParser.Declaration_templatevarContext ctx) {
+        Expression templatevar = (Expression) this.stack.pop();
+        Templatevar_ node = new Templatevar_(templatevar);
         this.stack.add(node);
     }
 
@@ -2584,6 +2656,18 @@ public class Listener implements GrammarListener{
     }
 
     @Override
+    public void enterPrimary_templatevar(GrammarParser.Primary_templatevarContext ctx) {
+
+    }
+
+    @Override
+    public void exitPrimary_templatevar(GrammarParser.Primary_templatevarContext ctx) {
+        Expression templatevar = (Expression) this.stack.pop();
+        Templatevar_ node = new Templatevar_(templatevar);
+        this.stack.add(node);
+    }
+
+    @Override
     public void enterPrimary_empty_array(GrammarParser.Primary_empty_arrayContext ctx) {
 
     }
@@ -2617,13 +2701,14 @@ public class Listener implements GrammarListener{
     }
 
     @Override
-    public void enterTemplateVar(GrammarParser.TemplateVarContext ctx) {
+    public void enterTemplatevar(GrammarParser.TemplatevarContext ctx) {
 
     }
 
     @Override
-    public void exitTemplateVar(GrammarParser.TemplateVarContext ctx) {
-
+    public void exitTemplatevar(GrammarParser.TemplatevarContext ctx) {
+        Templatevar node = new Templatevar(ctx.ID(0).getText(), ctx.ID(1).getText());
+        this.stack.add(node);
     }
 
     @Override
@@ -2677,11 +2762,12 @@ public class Listener implements GrammarListener{
 
 class Primary_id extends Node implements Expression {
     String variable;
-
+    double value;
     Primary_id(String variable) {
         this.variable = variable;
     }
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        //this.value = (double) map.get(this.variable);
         printStream.print(this.variable);
     }
 
@@ -2699,11 +2785,8 @@ class Primary_dnum extends Node implements Expression{
     Primary_dnum(double value){
         this.value = value;
     }
-    public void dump(PrintStream printStream){
-        if(this.value < 0){
-            printStream.print("(" + this.value + ")");
-        } else
-            printStream.print(this.value);
+    public void dump(PrintStream printStream, Map<String, Double> map){
+        printStream.print(this.value);
     }
 
     @Override
@@ -2720,11 +2803,8 @@ class Primary_lnum extends Node implements Expression{
     Primary_lnum(long value){
         this.value = value;
     }
-    public void dump(PrintStream printStream){
-        if(this.value < 0){
-            printStream.print("(" + this.value + ")");
-        } else
-            printStream.print(this.value);
+    public void dump(PrintStream printStream, Map<String, Double> map){
+        printStream.print(this.value);
     }
 
     @Override
@@ -2741,7 +2821,7 @@ class Primary_cnum extends Node implements Expression{
     Primary_cnum(String value){
         this.value = value;
     }
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print(this.value);
     }
 
@@ -2761,7 +2841,7 @@ class Primary_string extends Node implements Expression {
         this.string = string;
     }
 
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print(this.string);
     }
 
@@ -2781,10 +2861,10 @@ class Primary_parameters extends Node implements Expression{
         this.primary = primary;
         this.parameters = parameters;
     }
-    public void dump(PrintStream printStream) {
-        this.primary.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.primary.dump(printStream, map);
         printStream.print("(");
-        this.parameters.dump(printStream);
+        this.parameters.dump(printStream, map);
         printStream.print(")");
     }
 
@@ -2804,10 +2884,10 @@ class Primary_array_sub_script_expr extends Node implements Expression {
         this.primary = primary;
         this.sub_script_expr = sub_script_expr;
     }
-    public void dump(PrintStream printStream) {
-        this.primary.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.primary.dump(printStream, map);
         printStream.print('[');
-        this.sub_script_expr.dump(printStream);
+        this.sub_script_expr.dump(printStream, map);
         printStream.print(']');
     }
 
@@ -2828,12 +2908,12 @@ class Primary_matrix extends Node implements Expression {
         this.sub_script_expr1 = sub_script_expr1;
         this.sub_script_expr2 = sub_script_expr2;
     }
-    public void dump(PrintStream printStream) {
-        this.primary.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.primary.dump(printStream, map);
         printStream.print('[');
-        this.sub_script_expr1.dump(printStream);
+        this.sub_script_expr1.dump(printStream, map);
         printStream.print(", ");
-        this.sub_script_expr2.dump(printStream);
+        this.sub_script_expr2.dump(printStream, map);
         printStream.print(']');
     }
 
@@ -2851,8 +2931,8 @@ class Primary_empty_array extends Node implements Expression {
     Primary_empty_array(Expression primary){
         this.primary = primary;
     }
-    public void dump(PrintStream printStream) {
-        this.primary.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.primary.dump(printStream, map);
         printStream.print("[]");
     }
 
@@ -2872,8 +2952,8 @@ class Primary_dot_id extends Node implements Expression {
         this.primary = primary;
         this.id = id;
     }
-    public void dump(PrintStream printStream) {
-        this.primary.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.primary.dump(printStream, map);
         printStream.print('.' + this.id);
     }
 
@@ -2892,7 +2972,7 @@ class Primary_fespace_dot_id extends Node implements Expression {
         this.fespace = fespace;
         this.id = id;
     }
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print(this.fespace + '.' + this.id);
     }
 
@@ -2912,9 +2992,9 @@ class Primary_fespace_parameters extends Node implements Expression {
         this.fespace = fespace;
         this.parameters = parameters;
     }
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print(this.fespace + '(');
-        this.parameters.dump(printStream);
+        this.parameters.dump(printStream, map);
         printStream.print(')');
     }
 
@@ -2933,7 +3013,7 @@ class Primary_fespace1_dot_id extends Node implements Expression {
         this.fespace1 = fespace1;
         this.id = id;
     }
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print(this.fespace1 + '.' + this.id);
     }
 
@@ -2953,9 +3033,9 @@ class Primary_fespace1_parameters extends Node implements Expression {
         this.fespace1 = fespace1;
         this.parameters = parameters;
     }
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print(this.fespace1 + '(');
-        this.parameters.dump(printStream);
+        this.parameters.dump(printStream, map);
         printStream.print(')');
     }
 
@@ -2974,7 +3054,7 @@ class Primary_fespace3_dot_id extends Node implements Expression {
         this.fespace3 = fespace3;
         this.id = id;
     }
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print(this.fespace3 + '.' + this.id);
     }
 
@@ -2994,9 +3074,9 @@ class Primary_fespace3_parameters extends Node implements Expression {
         this.fespace3 = fespace3;
         this.parameters = parameters;
     }
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print(this.fespace3 + '(');
-        this.parameters.dump(printStream);
+        this.parameters.dump(printStream, map);
         printStream.print(')');
     }
 
@@ -3015,7 +3095,7 @@ class Primary_fespaceS_dot_id extends Node implements Expression {
         this.fespaceS = fespaceS;
         this.id = id;
     }
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print(this.fespaceS + '.' + this.id);
     }
 
@@ -3035,9 +3115,9 @@ class Primary_fespaceS_parameters extends Node implements Expression {
         this.fespaceS = fespaceS;
         this.parameters = parameters;
     }
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print(this.fespaceS + '(');
-        this.parameters.dump(printStream);
+        this.parameters.dump(printStream, map);
         printStream.print(')');
     }
 
@@ -3056,7 +3136,7 @@ class Primary_fespaceL_dot_id extends Node implements Expression {
         this.fespaceL = fespaceL;
         this.id = id;
     }
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print(this.fespaceL + '.' + this.id);
     }
 
@@ -3076,9 +3156,9 @@ class Primary_fespaceL_parameters extends Node implements Expression {
         this.fespaceL = fespaceL;
         this.parameters = parameters;
     }
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print(this.fespaceL + '(');
-        this.parameters.dump(printStream);
+        this.parameters.dump(printStream, map);
         printStream.print(')');
     }
 
@@ -3097,8 +3177,8 @@ class Primary_increment extends Node implements Expression {
         this.primary = primary;
     }
 
-    public void dump(PrintStream printStream) {
-        this.primary.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.primary.dump(printStream, map);
         printStream.print("++");
     }
 
@@ -3111,14 +3191,13 @@ class Primary_increment extends Node implements Expression {
     }
 }
 
-@SuppressWarnings("ALL")
 class Primary_decrement extends Node implements Expression {
     Expression primary;
     Primary_decrement(Expression primary){
         this.primary = primary;
     }
-    public void dump(PrintStream printStream) {
-        this.primary.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.primary.dump(printStream, map);
         printStream.print("--");
     }
 
@@ -3138,9 +3217,9 @@ class Primary_id_sub_script_expr extends Node implements Expression {
         this.id = id;
         this.sub_script_expr = sub_script_expr;
     }
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print(this.id + '(');
-        this.sub_script_expr.dump(printStream);
+        this.sub_script_expr.dump(printStream, map);
         printStream.print(')');
     }
 
@@ -3160,9 +3239,9 @@ class Primary_id_parameterstype extends Node implements Expression {
         this.id = id;
         this.parameterstype = parameterstype;
     }
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print(this.id + '(');
-        this.parameterstype.dump(printStream);
+        this.parameterstype.dump(printStream, map);
         printStream.print(')');
     }
 
@@ -3180,9 +3259,9 @@ class Primary_expr extends Node implements Expression {
     Primary_expr(Expression expr){
         this.expr = expr;
     }
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print('(');
-        this.expr.dump(printStream);
+        this.expr.dump(printStream, map);
         printStream.print(')');
     }
 
@@ -3200,9 +3279,9 @@ class Primary_array_ extends Node implements Expression {
     Primary_array_(Expression array){
         this.array = array;
     }
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print('[');
-        this.array.dump(printStream);
+        this.array.dump(printStream, map);
         printStream.print(']');
     }
 
@@ -3220,8 +3299,8 @@ class Primaryp_primary extends Node implements Expression {
     Primaryp_primary(Expression primary){
         this.primary = primary;
     }
-    public void dump(PrintStream printStream) {
-        this.primary.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.primary.dump(printStream, map);
     }
 
     @Override
@@ -3238,8 +3317,8 @@ class Primaryp_primary_transpose extends Node implements Expression {
     Primaryp_primary_transpose(Expression primary){
         this.primary = primary;
     }
-    public void dump(PrintStream printStream) {
-        this.primary.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.primary.dump(printStream, map);
         printStream.print("'");
     }
 
@@ -3257,8 +3336,8 @@ class Pow_expr_primary extends Node implements Expression {
     Pow_expr_primary(Expression primaryp){
         this.primaryp = primaryp;
     }
-    public void dump(PrintStream printStream) {
-        this.primaryp.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.primaryp.dump(printStream, map);
     }
 
     @Override
@@ -3277,10 +3356,10 @@ class Pow_expr_power extends Node implements Expression {
         this.primaryp = primaryp;
         this.unary_expr = unary_expr;
     }
-    public void dump(PrintStream printStream) {
-        this.primaryp.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.primaryp.dump(printStream, map);
         printStream.print('^');
-        this.unary_expr.dump(printStream);
+        this.unary_expr.dump(printStream, map);
     }
 
     @Override
@@ -3299,10 +3378,10 @@ class Pow_expr_underscore extends Node implements Expression {
         this.primaryp = primaryp;
         this.unary_expr = unary_expr;
     }
-    public void dump(PrintStream printStream) {
-        this.primaryp.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.primaryp.dump(printStream, map);
         printStream.print('_');
-        this.unary_expr.dump(printStream);
+        this.unary_expr.dump(printStream, map);
     }
 
     @Override
@@ -3319,8 +3398,8 @@ class Unary_expr_pow_expr extends Node implements Expression {
     Unary_expr_pow_expr(Expression pow_expr){
         this.pow_expr = pow_expr;
     }
-    public void dump(PrintStream printStream) {
-        this.pow_expr.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.pow_expr.dump(printStream, map);
     }
 
     @Override
@@ -3339,10 +3418,10 @@ class Unary_expr_unop_pow_expr extends Node implements Expression {
         this.unop = unop;
         this.pow_expr = pow_expr;
     }
-    public void dump(PrintStream printStream) {
-        this.unop.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.unop.dump(printStream, map);
         printStream.print(' ');
-        this.pow_expr.dump(printStream);
+        this.pow_expr.dump(printStream, map);
     }
 
     @Override
@@ -3359,8 +3438,8 @@ class Array_no_comma_expr extends Node implements Expression {
     Array_no_comma_expr(Expression no_comma_expr){
         this.no_comma_expr = no_comma_expr;
     }
-    public void dump(PrintStream printStream) {
-        this.no_comma_expr.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.no_comma_expr.dump(printStream, map);
     }
 
     @Override
@@ -3379,10 +3458,10 @@ class Array_comma_no_comma_expr extends Node implements Expression {
         this.array = array;
         this.no_comma_expr = no_comma_expr;
     }
-    public void dump(PrintStream printStream) {
-        this.array.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.array.dump(printStream, map);
         printStream.print(", ");
-        this.no_comma_expr.dump(printStream);
+        this.no_comma_expr.dump(printStream, map);
     }
 
     @Override
@@ -3396,7 +3475,7 @@ class Array_comma_no_comma_expr extends Node implements Expression {
 
 class Parameters_ extends Node implements Expression {
     Parameters_(){}
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print("");
     }
 
@@ -3414,7 +3493,7 @@ class Parameters_fespace extends Node implements Expression {
     Parameters_fespace(String fespace){
         this.fespace = fespace;
     }
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print(this.fespace);
     }
 
@@ -3432,7 +3511,7 @@ class Parameters_fespace1 extends Node implements Expression {
     Parameters_fespace1(String fespace1){
         this.fespace1 = fespace1;
     }
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print(this.fespace1);
     }
 
@@ -3450,7 +3529,7 @@ class Parameters_fespace3 extends Node implements Expression {
     Parameters_fespace3(String fespace3){
         this.fespace3 = fespace3;
     }
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print(this.fespace3);
     }
 
@@ -3468,7 +3547,7 @@ class Parameters_fespaceS extends Node implements Expression {
     Parameters_fespaceS(String fespaceS){
         this.fespaceS = fespaceS;
     }
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print(this.fespaceS);
     }
 
@@ -3486,7 +3565,7 @@ class Parameters_fespaceL extends Node implements Expression {
     Parameters_fespaceL(String fespaceL){
         this.fespaceL = fespaceL;
     }
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print(this.fespaceL);
     }
 
@@ -3506,10 +3585,10 @@ class Parameters_id_equal_no_set_expr extends Node implements Expression {
         this.id = id;
         this.no_set_expr = no_set_expr;
     }
-    public void dump(PrintStream printStream) {
-        this.id.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.id.dump(printStream, map);
         printStream.print(" = ");
-        this.no_set_expr.dump(printStream);
+        this.no_set_expr.dump(printStream, map);
     }
 
     @Override
@@ -3526,8 +3605,8 @@ class Parameters_sub_scripts_expr extends Node implements Expression {
     Parameters_sub_scripts_expr(Expression sub_script_expr){
         this.sub_script_expr = sub_script_expr;
     }
-    public void dump(PrintStream printStream) {
-        this.sub_script_expr.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.sub_script_expr.dump(printStream, map);
     }
 
     @Override
@@ -3546,8 +3625,8 @@ class Parameters_comma_fespace extends Node implements Expression {
         this.parameters = parameters;
         this.fespace = fespace;
     }
-    public void dump(PrintStream printStream) {
-        this.parameters.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.parameters.dump(printStream, map);
         printStream.print(", " + this.fespace);
     }
 
@@ -3567,8 +3646,8 @@ class Parameters_comma_fespace1 extends Node implements Expression {
         this.parameters = parameters;
         this.fespace1 = fespace1;
     }
-    public void dump(PrintStream printStream) {
-        this.parameters.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.parameters.dump(printStream, map);
         printStream.print(", " + this.fespace1);
     }
 
@@ -3588,8 +3667,8 @@ class Parameters_comma_fespace3 extends Node implements Expression {
         this.parameters = parameters;
         this.fespace3 = fespace3;
     }
-    public void dump(PrintStream printStream) {
-        this.parameters.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.parameters.dump(printStream, map);
         printStream.print(", " + this.fespace3);
     }
 
@@ -3609,8 +3688,8 @@ class Parameters_comma_fespaceS extends Node implements Expression {
         this.parameters = parameters;
         this.fespaceS = fespaceS;
     }
-    public void dump(PrintStream printStream) {
-        this.parameters.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.parameters.dump(printStream, map);
         printStream.print(", " + this.fespaceS);
     }
 
@@ -3630,8 +3709,8 @@ class Parameters_comma_fespaceL extends Node implements Expression {
         this.parameters = parameters;
         this.fespaceL = fespaceL;
     }
-    public void dump(PrintStream printStream) {
-        this.parameters.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.parameters.dump(printStream, map);
         printStream.print(", " + this.fespaceL);
     }
 
@@ -3651,10 +3730,10 @@ class Parameters_comma_sub_script_expr extends Node implements Expression {
         this.parameters = parameters;
         this.sub_script_expr = sub_script_expr;
     }
-    public void dump(PrintStream printStream) {
-        this.parameters.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.parameters.dump(printStream, map);
         printStream.print(", ");
-        this.sub_script_expr.dump(printStream);
+        this.sub_script_expr.dump(printStream, map);
     }
 
     @Override
@@ -3675,12 +3754,12 @@ class Parameters_comma_id_equal_no_set_expr extends Node implements Expression {
         this.id = id;
         this.no_set_expr = no_set_expr;
     }
-    public void dump(PrintStream printStream) {
-        this.parameters.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.parameters.dump(printStream, map);
         printStream.print(", ");
-        this.id.dump(printStream);
+        this.id.dump(printStream, map);
         printStream.print(" = ");
-        this.no_set_expr.dump(printStream);
+        this.no_set_expr.dump(printStream, map);
     }
 
     @Override
@@ -3699,10 +3778,10 @@ class Parameterstype extends Node implements Expression {
         this.sub_script_expr = sub_script_expr;
         this.parameters = parameters;
     }
-    public void dump(PrintStream printStream) {
-        this.sub_script_expr.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.sub_script_expr.dump(printStream, map);
         printStream.print(", ");
-        this.parameters.dump(printStream);
+        this.parameters.dump(printStream, map);
     }
 
     @Override
@@ -3719,8 +3798,8 @@ class Sub_script_expr_no_ternary_expr extends Node implements Expression {
     Sub_script_expr_no_ternary_expr(Expression no_ternary_expr){
         this.no_ternary_expr = no_ternary_expr;
     }
-    public void dump(PrintStream printStream) {
-        this.no_ternary_expr.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.no_ternary_expr.dump(printStream, map);
     }
 
     @Override
@@ -3735,7 +3814,7 @@ class Sub_script_expr_no_ternary_expr extends Node implements Expression {
 class Sub_script_expr_colon extends Node implements Expression {
     Sub_script_expr_colon(){
     }
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print(" : ");
     }
 
@@ -3754,10 +3833,10 @@ class Sub_script_expr_no_ternary_expr_colon_no_ternary_expr extends Node impleme
         this.no_ternary_expr1 = no_ternary_expr1;
         this.no_ternary_expr2 = no_ternary_expr2;
     }
-    public void dump(PrintStream printStream) {
-        this.no_ternary_expr1.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.no_ternary_expr1.dump(printStream, map);
         printStream.print(" : ");
-        this.no_ternary_expr2.dump(printStream);
+        this.no_ternary_expr2.dump(printStream, map);
     }
 
     @Override
@@ -3776,12 +3855,12 @@ class Sub_script_expr_no_ternary_expr_colon_no_ternary_expr_colon_no_ternary_exp
         this.no_ternary_expr2 = no_ternary_expr2;
         this.no_ternary_expr3 = no_ternary_expr3;
     }
-    public void dump(PrintStream printStream) {
-        this.no_ternary_expr1.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.no_ternary_expr1.dump(printStream, map);
         printStream.print(" : ");
-        this.no_ternary_expr2.dump(printStream);
+        this.no_ternary_expr2.dump(printStream, map);
         printStream.print(" : ");
-        this.no_ternary_expr3.dump(printStream);
+        this.no_ternary_expr3.dump(printStream, map);
     }
 
     @Override
@@ -3798,8 +3877,8 @@ class No_ternary_expr_unary_expr extends Node implements Expression {
     No_ternary_expr_unary_expr(Expression unary_expr){
         this.unary_expr = unary_expr;
     }
-    public void dump(PrintStream printStream) {
-        this.unary_expr.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.unary_expr.dump(printStream, map);
     }
 
     @Override
@@ -3817,10 +3896,10 @@ class No_ternary_expr_multiply extends Node implements Expression {
         this.no_ternary_expr1 = no_ternary_expr1;
         this.no_ternary_expr2 = no_ternary_expr2;
     }
-    public void dump(PrintStream printStream) {
-        this.no_ternary_expr1.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.no_ternary_expr1.dump(printStream, map);
         printStream.print(" * ");
-        this.no_ternary_expr2.dump(printStream);
+        this.no_ternary_expr2.dump(printStream, map);
     }
 
     @Override
@@ -3838,10 +3917,10 @@ class No_ternary_expr_dotMultiply extends Node implements Expression {
         this.no_ternary_expr1 = no_ternary_expr1;
         this.no_ternary_expr2 = no_ternary_expr2;
     }
-    public void dump(PrintStream printStream) {
-        this.no_ternary_expr1.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.no_ternary_expr1.dump(printStream, map);
         printStream.print(" .* ");
-        this.no_ternary_expr2.dump(printStream);
+        this.no_ternary_expr2.dump(printStream, map);
     }
 
     @Override
@@ -3859,10 +3938,10 @@ class No_ternary_expr_dotDivide extends Node implements Expression {
         this.no_ternary_expr1 = no_ternary_expr1;
         this.no_ternary_expr2 = no_ternary_expr2;
     }
-    public void dump(PrintStream printStream) {
-        this.no_ternary_expr1.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.no_ternary_expr1.dump(printStream, map);
         printStream.print(" ./ ");
-        this.no_ternary_expr2.dump(printStream);
+        this.no_ternary_expr2.dump(printStream, map);
     }
 
     @Override
@@ -3880,10 +3959,10 @@ class No_ternary_expr_divide extends Node implements Expression {
         this.no_ternary_expr1 = no_ternary_expr1;
         this.no_ternary_expr2 = no_ternary_expr2;
     }
-    public void dump(PrintStream printStream) {
-        this.no_ternary_expr1.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.no_ternary_expr1.dump(printStream, map);
         printStream.print(" / ");
-        this.no_ternary_expr2.dump(printStream);
+        this.no_ternary_expr2.dump(printStream, map);
     }
 
     @Override
@@ -3901,10 +3980,10 @@ class No_ternary_expr_modulus extends Node implements Expression {
         this.no_ternary_expr1 = no_ternary_expr1;
         this.no_ternary_expr2 = no_ternary_expr2;
     }
-    public void dump(PrintStream printStream) {
-        this.no_ternary_expr1.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.no_ternary_expr1.dump(printStream, map);
         printStream.print(" % ");
-        this.no_ternary_expr2.dump(printStream);
+        this.no_ternary_expr2.dump(printStream, map);
     }
 
     @Override
@@ -3922,10 +4001,10 @@ class No_ternary_expr_plus extends Node implements Expression {
         this.no_ternary_expr1 = no_ternary_expr1;
         this.no_ternary_expr2 = no_ternary_expr2;
     }
-    public void dump(PrintStream printStream) {
-        this.no_ternary_expr1.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.no_ternary_expr1.dump(printStream, map);
         printStream.print(" + ");
-        this.no_ternary_expr2.dump(printStream);
+        this.no_ternary_expr2.dump(printStream, map);
     }
 
     @Override
@@ -3943,10 +4022,10 @@ class No_ternary_expr_minus extends Node implements Expression {
         this.no_ternary_expr1 = no_ternary_expr1;
         this.no_ternary_expr2 = no_ternary_expr2;
     }
-    public void dump(PrintStream printStream) {
-        this.no_ternary_expr1.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.no_ternary_expr1.dump(printStream, map);
         printStream.print(" - ");
-        this.no_ternary_expr2.dump(printStream);
+        this.no_ternary_expr2.dump(printStream, map);
     }
 
     @Override
@@ -3964,10 +4043,10 @@ class No_ternary_expr_out extends Node implements Expression {
         this.no_ternary_expr1 = no_ternary_expr1;
         this.no_ternary_expr2 = no_ternary_expr2;
     }
-    public void dump(PrintStream printStream) {
-        this.no_ternary_expr1.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.no_ternary_expr1.dump(printStream, map);
         printStream.print(" << " );
-        this.no_ternary_expr2.dump(printStream);
+        this.no_ternary_expr2.dump(printStream, map);
     }
 
     @Override
@@ -3985,10 +4064,10 @@ class No_ternary_expr_in extends Node implements Expression {
         this.no_ternary_expr1 = no_ternary_expr1;
         this.no_ternary_expr2 = no_ternary_expr2;
     }
-    public void dump(PrintStream printStream) {
-        this.no_ternary_expr1.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.no_ternary_expr1.dump(printStream, map);
         printStream.print(" >> ");
-        this.no_ternary_expr2.dump(printStream);
+        this.no_ternary_expr2.dump(printStream, map);
     }
 
     @Override
@@ -4006,10 +4085,10 @@ class No_ternary_expr_and extends Node implements Expression {
         this.no_ternary_expr1 = no_ternary_expr1;
         this.no_ternary_expr2 = no_ternary_expr2;
     }
-    public void dump(PrintStream printStream) {
-        this.no_ternary_expr1.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.no_ternary_expr1.dump(printStream, map);
         printStream.print(" & ");
-        this.no_ternary_expr2.dump(printStream);
+        this.no_ternary_expr2.dump(printStream, map);
     }
 
     @Override
@@ -4027,10 +4106,10 @@ class No_ternary_expr_andand extends Node implements Expression {
         this.no_ternary_expr1 = no_ternary_expr1;
         this.no_ternary_expr2 = no_ternary_expr2;
     }
-    public void dump(PrintStream printStream) {
-        this.no_ternary_expr1.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.no_ternary_expr1.dump(printStream, map);
         printStream.print(" && ");
-        this.no_ternary_expr2.dump(printStream);
+        this.no_ternary_expr2.dump(printStream, map);
     }
 
     @Override
@@ -4048,10 +4127,10 @@ class No_ternary_expr_or extends Node implements Expression {
         this.no_ternary_expr1 = no_ternary_expr1;
         this.no_ternary_expr2 = no_ternary_expr2;
     }
-    public void dump(PrintStream printStream) {
-        this.no_ternary_expr1.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.no_ternary_expr1.dump(printStream, map);
         printStream.print(" | ");
-        this.no_ternary_expr2.dump(printStream);
+        this.no_ternary_expr2.dump(printStream, map);
     }
 
     @Override
@@ -4069,10 +4148,10 @@ class No_ternary_expr_oror extends Node implements Expression {
         this.no_ternary_expr1 = no_ternary_expr1;
         this.no_ternary_expr2 = no_ternary_expr2;
     }
-    public void dump(PrintStream printStream) {
-        this.no_ternary_expr1.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.no_ternary_expr1.dump(printStream, map);
         printStream.print(" || ");
-        this.no_ternary_expr2.dump(printStream);
+        this.no_ternary_expr2.dump(printStream, map);
     }
 
     @Override
@@ -4090,10 +4169,10 @@ class No_ternary_expr_less extends Node implements Expression {
         this.no_ternary_expr1 = no_ternary_expr1;
         this.no_ternary_expr2 = no_ternary_expr2;
     }
-    public void dump(PrintStream printStream) {
-        this.no_ternary_expr1.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.no_ternary_expr1.dump(printStream, map);
         printStream.print(" < ");
-        this.no_ternary_expr2.dump(printStream);
+        this.no_ternary_expr2.dump(printStream, map);
     }
 
     @Override
@@ -4111,10 +4190,10 @@ class No_ternary_expr_lessEqual extends Node implements Expression {
         this.no_ternary_expr1 = no_ternary_expr1;
         this.no_ternary_expr2 = no_ternary_expr2;
     }
-    public void dump(PrintStream printStream) {
-        this.no_ternary_expr1.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.no_ternary_expr1.dump(printStream, map);
         printStream.print(" <= ");
-        this.no_ternary_expr2.dump(printStream);
+        this.no_ternary_expr2.dump(printStream, map);
     }
 
     @Override
@@ -4132,10 +4211,10 @@ class No_ternary_expr_greater extends Node implements Expression {
         this.no_ternary_expr1 = no_ternary_expr1;
         this.no_ternary_expr2 = no_ternary_expr2;
     }
-    public void dump(PrintStream printStream) {
-        this.no_ternary_expr1.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.no_ternary_expr1.dump(printStream, map);
         printStream.print(" > ");
-        this.no_ternary_expr2.dump(printStream);
+        this.no_ternary_expr2.dump(printStream, map);
     }
 
     @Override
@@ -4153,10 +4232,10 @@ class No_ternary_expr_greaterEqual extends Node implements Expression {
         this.no_ternary_expr1 = no_ternary_expr1;
         this.no_ternary_expr2 = no_ternary_expr2;
     }
-    public void dump(PrintStream printStream) {
-        this.no_ternary_expr1.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.no_ternary_expr1.dump(printStream, map);
         printStream.print(" >= ");
-        this.no_ternary_expr2.dump(printStream);
+        this.no_ternary_expr2.dump(printStream, map);
     }
 
     @Override
@@ -4174,10 +4253,10 @@ class No_ternary_expr_equal extends Node implements Expression {
         this.no_ternary_expr1 = no_ternary_expr1;
         this.no_ternary_expr2 = no_ternary_expr2;
     }
-    public void dump(PrintStream printStream) {
-        this.no_ternary_expr1.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.no_ternary_expr1.dump(printStream, map);
         printStream.print(" == ");
-        this.no_ternary_expr2.dump(printStream);
+        this.no_ternary_expr2.dump(printStream, map);
     }
 
     @Override
@@ -4195,10 +4274,10 @@ class No_ternary_expr_notEqual extends Node implements Expression {
         this.no_ternary_expr1 = no_ternary_expr1;
         this.no_ternary_expr2 = no_ternary_expr2;
     }
-    public void dump(PrintStream printStream) {
-        this.no_ternary_expr1.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.no_ternary_expr1.dump(printStream, map);
         printStream.print(" != ");
-        this.no_ternary_expr2.dump(printStream);
+        this.no_ternary_expr2.dump(printStream, map);
     }
 
     @Override
@@ -4215,8 +4294,8 @@ class No_set_expr_no_ternary_expr extends Node implements Expression {
     No_set_expr_no_ternary_expr(Expression no_ternary_expr){
         this.no_ternary_expr = no_ternary_expr;
     }
-    public void dump(PrintStream printStream) {
-        this.no_ternary_expr.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.no_ternary_expr.dump(printStream, map);
     }
 
     @Override
@@ -4235,12 +4314,12 @@ class No_set_expr_no_ternary_expr_if_no_ternary_expr extends Node implements Exp
         this.no_ternary_expr1 = no_ternary_expr1;
         this.no_ternary_expr2 = no_ternary_expr2;
     }
-    public void dump(PrintStream printStream) {
-        this.no_ternary_expr.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.no_ternary_expr.dump(printStream, map);
         printStream.print(" ? ");
-        this.no_ternary_expr1.dump(printStream);
+        this.no_ternary_expr1.dump(printStream, map);
         printStream.print(" : ");
-        this.no_ternary_expr2.dump(printStream);
+        this.no_ternary_expr2.dump(printStream, map);
     }
 
     @Override
@@ -4258,10 +4337,10 @@ class No_set_expr_no_ternary_expr_colon extends Node implements Expression {
         this.no_ternary_expr1 = no_ternary_expr1;
         this.no_ternary_expr2 = no_ternary_expr2;
     }
-    public void dump(PrintStream printStream) {
-        this.no_ternary_expr1.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.no_ternary_expr1.dump(printStream, map);
         printStream.print(" : ");
-        this.no_ternary_expr2.dump(printStream);
+        this.no_ternary_expr2.dump(printStream, map);
     }
 
     @Override
@@ -4280,12 +4359,12 @@ class No_set_expr_no_ternary_expr_colon_no_ternary_expr extends Node implements 
         this.no_ternary_expr2 = no_ternary_expr2;
         this.no_ternary_expr3 = no_ternary_expr3;
     }
-    public void dump(PrintStream printStream) {
-        this.no_ternary_expr1.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.no_ternary_expr1.dump(printStream, map);
         printStream.print(" : ");
-        this.no_ternary_expr2.dump(printStream);
+        this.no_ternary_expr2.dump(printStream, map);
         printStream.print(" : ");
-        this.no_ternary_expr3.dump(printStream);
+        this.no_ternary_expr3.dump(printStream, map);
     }
 
     @Override
@@ -4302,8 +4381,8 @@ class No_comma_expr_no_set_expr extends Node implements Expression {
     No_comma_expr_no_set_expr(Expression no_set_expr){
         this.no_set_expr = no_set_expr;
     }
-    public void dump(PrintStream printStream) {
-        this.no_set_expr.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.no_set_expr.dump(printStream, map);
     }
 
     @Override
@@ -4322,10 +4401,10 @@ class No_comma_expr_equal extends Node implements Expression {
         this.no_set_expr = no_set_expr;
         this.no_comma_expr = no_comma_expr;
     }
-    public void dump(PrintStream printStream) {
-        this.no_set_expr.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.no_set_expr.dump(printStream, map);
         printStream.print(" = ");
-        this.no_comma_expr.dump(printStream);
+        this.no_comma_expr.dump(printStream, map);
     }
 
     @Override
@@ -4344,10 +4423,10 @@ class No_comma_expr_plusEqual extends Node implements Expression {
         this.no_set_expr = no_set_expr;
         this.no_comma_expr = no_comma_expr;
     }
-    public void dump(PrintStream printStream) {
-        this.no_set_expr.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.no_set_expr.dump(printStream, map);
         printStream.print(" += ");
-        this.no_comma_expr.dump(printStream);
+        this.no_comma_expr.dump(printStream, map);
     }
 
     @Override
@@ -4366,10 +4445,10 @@ class No_comma_expr_minusEqual extends Node implements Expression {
         this.no_set_expr = no_set_expr;
         this.no_comma_expr = no_comma_expr;
     }
-    public void dump(PrintStream printStream) {
-        this.no_set_expr.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.no_set_expr.dump(printStream, map);
         printStream.print(" -= ");
-        this.no_comma_expr.dump(printStream);
+        this.no_comma_expr.dump(printStream, map);
     }
 
     @Override
@@ -4388,10 +4467,10 @@ class No_comma_expr_multEqual extends Node implements Expression {
         this.no_set_expr = no_set_expr;
         this.no_comma_expr = no_comma_expr;
     }
-    public void dump(PrintStream printStream) {
-        this.no_set_expr.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.no_set_expr.dump(printStream, map);
         printStream.print(" *= ");
-        this.no_comma_expr.dump(printStream);
+        this.no_comma_expr.dump(printStream, map);
     }
 
     @Override
@@ -4410,10 +4489,10 @@ class No_comma_expr_divideEqual extends Node implements Expression {
         this.no_set_expr = no_set_expr;
         this.no_comma_expr = no_comma_expr;
     }
-    public void dump(PrintStream printStream) {
-        this.no_set_expr.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.no_set_expr.dump(printStream, map);
         printStream.print("/=");
-        this.no_comma_expr.dump(printStream);
+        this.no_comma_expr.dump(printStream, map);
     }
 
     @Override
@@ -4432,10 +4511,10 @@ class No_comma_expr_dot_multEqual extends Node implements Expression {
         this.no_set_expr = no_set_expr;
         this.no_comma_expr = no_comma_expr;
     }
-    public void dump(PrintStream printStream) {
-        this.no_set_expr.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.no_set_expr.dump(printStream, map);
         printStream.print(" .*= ");
-        this.no_comma_expr.dump(printStream);
+        this.no_comma_expr.dump(printStream, map);
     }
 
     @Override
@@ -4454,10 +4533,10 @@ class No_comma_expr_dot_divideEqual extends Node implements Expression {
         this.no_set_expr = no_set_expr;
         this.no_comma_expr = no_comma_expr;
     }
-    public void dump(PrintStream printStream) {
-        this.no_set_expr.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.no_set_expr.dump(printStream, map);
         printStream.print(" ./= ");
-        this.no_comma_expr.dump(printStream);
+        this.no_comma_expr.dump(printStream, map);
     }
 
     @Override
@@ -4474,7 +4553,7 @@ class Unop_minus extends Node implements Expression {
     Unop_minus(String op){
         this.op = op;
     }
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print(this.op);
     }
 
@@ -4492,7 +4571,7 @@ class Unop_plus extends Node implements Expression {
     Unop_plus(String op){
         this.op = op;
     }
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print(this.op);
     }
 
@@ -4510,7 +4589,7 @@ class Unop_not extends Node implements Expression {
     Unop_not(String op){
         this.op = op;
     }
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print(this.op);
     }
 
@@ -4528,7 +4607,7 @@ class Unop_increment extends Node implements Expression {
     Unop_increment(String op){
         this.op = op;
     }
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print(this.op);
     }
 
@@ -4546,7 +4625,7 @@ class Unop_decrement extends Node implements Expression {
     Unop_decrement(String op){
         this.op = op;
     }
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print(this.op);
     }
 
@@ -4564,8 +4643,8 @@ class Expr_no_comma_expr extends Node implements Expression {
     Expr_no_comma_expr(Expression no_comma_expr){
         this.no_comma_expr = no_comma_expr;
     }
-    public void dump(PrintStream printStream) {
-        this.no_comma_expr.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.no_comma_expr.dump(printStream, map);
     }
 
     @Override
@@ -4583,10 +4662,10 @@ class Expr_comma extends Node implements Expression {
         this.expr1 = expr1;
         this.expr2 = expr2;
     }
-    public void dump(PrintStream printStream) {
-        this.expr1.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.expr1.dump(printStream, map);
         printStream.print(", ");
-        this.expr2.dump(printStream);
+        this.expr2.dump(printStream, map);
     }
 
     @Override
@@ -4605,10 +4684,10 @@ class Border_expr extends Node implements Expression {
         this.bornes = bornes;
         this.instruction = instruction;
     }
-    public void dump(PrintStream printStream) {
-        this.bornes.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.bornes.dump(printStream, map);
         printStream.print(' ');
-        this.instruction.dump(printStream);
+        this.instruction.dump(printStream, map);
     }
 
     @Override
@@ -4628,11 +4707,11 @@ class Bornes_id_expr_expr extends Node implements Expression {
         this.expr1 = expr1;
         this.expr2 = expr2;
     }
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print('(' + this.id + " = ");
-        this.expr1.dump(printStream);
+        this.expr1.dump(printStream, map);
         printStream.print(", ");
-        this.expr2.dump(printStream);
+        this.expr2.dump(printStream, map);
         printStream.print(')');
     }
 
@@ -4654,11 +4733,11 @@ class Bornes_id_expr_expr_id extends Node implements Expression {
         this.expr2 = expr2;
         this.id2 = id2;
     }
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print('(' + this.id1 + " = ");
-        this.expr1.dump(printStream);
+        this.expr1.dump(printStream, map);
         printStream.print(", ");
-        this.expr2.dump(printStream);
+        this.expr2.dump(printStream, map);
         printStream.print("; " + this.id2 + ')');
     }
 
@@ -4676,9 +4755,9 @@ class Catchs extends Node implements Expression {
     Catchs(Expression instruction){
         this.instruction = instruction;
     }
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print("catch(...) ");
-        this.instruction.dump(printStream);
+        this.instruction.dump(printStream, map);
     }
 
     @Override
@@ -4693,7 +4772,7 @@ class Catchs extends Node implements Expression {
 class Instruction_ extends Node implements Expression {
     Instruction_(){
     }
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.println(";");
     }
 
@@ -4711,8 +4790,8 @@ class Instruction_include_string extends Node implements Expression {
     Instruction_include_string(String string){
         this.string = string;
     }
-    public void dump(PrintStream printStream) {
-        printStream.print("include" + this.string);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        printStream.print("include " + this.string);
     }
 
     @Override
@@ -4729,8 +4808,8 @@ class Instruction_load_string extends Node implements Expression {
     Instruction_load_string(String string){
         this.string = string;
     }
-    public void dump(PrintStream printStream) {
-        printStream.print("load" + this.string);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        printStream.print("load " + this.string);
     }
 
     @Override
@@ -4749,12 +4828,12 @@ class Instruction_try_instructions_catchs extends Node implements Expression {
         this.instructions = instructions;
         this.catchs = catchs;
     }
-    public void dump(PrintStream printStream) {
-        this.Try1.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.Try1.dump(printStream, map);
         printStream.println("{");
-        this.instructions.dump(printStream);
+        this.instructions.dump(printStream, map);
         printStream.print("\n}");
-        this.catchs.dump(printStream);
+        this.catchs.dump(printStream, map);
     }
 
     @Override
@@ -4771,9 +4850,9 @@ class Instruction_expr extends Node implements Expression {
     Instruction_expr(Expression expr){
         this.expr = expr;
     }
-    public void dump(PrintStream printStream) {
-        this.expr.dump(printStream);
-        printStream.println(";");
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.expr.dump(printStream, map);
+        //printStream.println(";");
     }
 
     @Override
@@ -4790,8 +4869,8 @@ class Instruction_declaration extends Node implements Expression {
     Instruction_declaration(Expression declaration){
         this.declaration = declaration;
     }
-    public void dump(PrintStream printStream) {
-        this.declaration.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.declaration.dump(printStream, map);
     }
 
     @Override
@@ -4812,14 +4891,14 @@ class For_loop_idfor_primary_instruction extends Node implements Expression {
         this.primary = primary;
         this.instruction = instruction;
     }
-    public void dump(PrintStream printStream) {
-        this.for_loop.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.for_loop.dump(printStream, map);
         printStream.print("[");
-        this.idfor.dump(printStream);
+        this.idfor.dump(printStream, map);
         printStream.print(" : ");
-        this.primary.dump(printStream);
+        this.primary.dump(printStream, map);
         printStream.print("]");
-        this.instruction.dump(printStream);
+        this.instruction.dump(printStream, map);
     }
 
     @Override
@@ -4842,16 +4921,16 @@ class Instruction_for_loop extends Node implements Expression {
         this.expr3 = expr3;
         this.instruction = instruction;
     }
-    public void dump(PrintStream printStream) {
-        this.for_loop.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.for_loop.dump(printStream, map);
         printStream.print('(');
-        this.expr1.dump(printStream);
+        this.expr1.dump(printStream, map);
         printStream.print("; ");
-        this.expr2.dump(printStream);
+        this.expr2.dump(printStream, map);
         printStream.print("; ");
-        this.expr3.dump(printStream);
+        this.expr3.dump(printStream, map);
         printStream.print(')');
-        this.instruction.dump(printStream);
+        this.instruction.dump(printStream, map);
     }
 
     @Override
@@ -4874,16 +4953,16 @@ class Instruction_declaration_for_expr_expr_instruction extends Node implements 
         this.expr3 = expr3;
         this.instruction = instruction;
     }
-    public void dump(PrintStream printStream) {
-        this.for_loop.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.for_loop.dump(printStream, map);
         printStream.print('(');
-        this.declaration_for.dump(printStream);
+        this.declaration_for.dump(printStream, map);
         printStream.print("; ");
-        this.expr2.dump(printStream);
+        this.expr2.dump(printStream, map);
         printStream.print("; ");
-        this.expr3.dump(printStream);
+        this.expr3.dump(printStream, map);
         printStream.print(')');
-        this.instruction.dump(printStream);
+        this.instruction.dump(printStream, map);
     }
 
     @Override
@@ -4904,12 +4983,12 @@ class Instruction_while_loop extends Node implements Expression {
         this.expr = expr;
         this.instruction = instruction;
     }
-    public void dump(PrintStream printStream) {
-        this.while_loop.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.while_loop.dump(printStream, map);
         printStream.print('(');
-        this.expr.dump(printStream);
+        this.expr.dump(printStream, map);
         printStream.print(')');
-        this.instruction.dump(printStream);
+        this.instruction.dump(printStream, map);
     }
 
     @Override
@@ -4928,11 +5007,11 @@ class Instruction_if extends Node implements Expression {
         this.expr = expr;
         this.instruction = instruction;
     }
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print("if(");
-        this.expr.dump(printStream);
+        this.expr.dump(printStream, map);
         printStream.print(')');
-        this.instruction.dump(printStream);
+        this.instruction.dump(printStream, map);
     }
 
     @Override
@@ -4952,13 +5031,13 @@ class Instruction_if_else extends Node implements Expression {
         this.instruction1 = instruction1;
         this.instruction2 = instruction2;
     }
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print("if(");
-        this.expr.dump(printStream);
+        this.expr.dump(printStream, map);
         printStream.print(')');
-        this.instruction1.dump(printStream);
+        this.instruction1.dump(printStream, map);
         printStream.print(" else ");
-        this.instruction2.dump(printStream);
+        this.instruction2.dump(printStream, map);
     }
 
     @Override
@@ -4978,12 +5057,12 @@ class Instruction_begin_end extends Node implements Expression {
         this.instruction = instruction;
         this.end = end;
     }
-    public void dump(PrintStream printStream) {
-        this.begin.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.begin.dump(printStream, map);
         printStream.println();
-        this.instruction.dump(printStream);
+        this.instruction.dump(printStream, map);
         printStream.println();
-        this.end.dump(printStream);
+        this.end.dump(printStream, map);
     }
 
     @Override
@@ -5002,9 +5081,9 @@ class Instruction_border_id_border_expr extends Node implements Expression {
         this.id = id;
         this.border_expr = border_expr;
     }
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print("border " + this.id);
-        this.border_expr.dump(printStream);
+        this.border_expr.dump(printStream, map);
     }
 
     @Override
@@ -5023,9 +5102,9 @@ class Instruction_border_id_array extends Node implements Expression {
         this.id = id;
         this.array = array;
     }
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print("border " + this.id + '[');
-        this.array.dump(printStream);
+        this.array.dump(printStream, map);
         printStream.print(']');
     }
 
@@ -5041,7 +5120,7 @@ class Instruction_border_id_array extends Node implements Expression {
 class Instruction_break extends Node implements Expression {
     Instruction_break(){
     }
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.println("break; ");
     }
 
@@ -5057,7 +5136,7 @@ class Instruction_break extends Node implements Expression {
 class Instruction_continue extends Node implements Expression {
     Instruction_continue(){
     }
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.println("continue; ");
     }
 
@@ -5075,9 +5154,9 @@ class Instruction_return extends Node implements Expression {
     Instruction_return(Expression expr){
         this.expr = expr;
     }
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print("return ");
-        this.expr.dump(printStream);
+        this.expr.dump(printStream, map);
         printStream.println(";");
     }
 
@@ -5095,8 +5174,8 @@ class Idfor_id extends Node implements Expression {
     Idfor_id(Expression id){
         this.id = id;
     }
-    public void dump(PrintStream printStream) {
-        this.id.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.id.dump(printStream, map);
     }
 
     @Override
@@ -5114,10 +5193,10 @@ class Idfor_comma_id extends Node implements Expression {
         this.id1 = id1;
         this.id2 = id2;
     }
-    public void dump(PrintStream printStream) {
-        this.id1.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.id1.dump(printStream, map);
         printStream.print(", ");
-        this.id2.dump(printStream);
+        this.id2.dump(printStream, map);
     }
 
     @Override
@@ -5136,12 +5215,12 @@ class Idfor_comma_id_comma_id extends Node implements Expression {
         this.id2 = id2;
         this.id3 = id3;
     }
-    public void dump(PrintStream printStream) {
-        this.id1.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.id1.dump(printStream, map);
         printStream.print(", ");
-        this.id2.dump(printStream);
+        this.id2.dump(printStream, map);
         printStream.print(", ");
-        this.id3.dump(printStream);
+        this.id3.dump(printStream, map);
     }
 
     @Override
@@ -5156,7 +5235,7 @@ class Idfor_comma_id_comma_id extends Node implements Expression {
 class Try extends Node implements Expression {
     Try(){
     }
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print("try");
     }
 
@@ -5175,10 +5254,10 @@ class Declaration_for extends Node implements Expression {
         this.type_of_dcl = type_of_dcl;
         this.list_of_dcls = list_of_dcls;
     }
-    public void dump(PrintStream printStream) {
-        this.type_of_dcl.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.type_of_dcl.dump(printStream, map);
         printStream.print(" ");
-        this.list_of_dcls.dump(printStream);
+        this.list_of_dcls.dump(printStream, map);
     }
 
     @Override
@@ -5193,7 +5272,7 @@ class Declaration_for extends Node implements Expression {
 class For_loop extends Node implements Expression {
     For_loop(){
     }
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print("for");
     }
 
@@ -5209,7 +5288,7 @@ class For_loop extends Node implements Expression {
 class While_loop extends Node implements Expression {
     While_loop(){
     }
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print("while");
     }
 
@@ -5225,7 +5304,7 @@ class While_loop extends Node implements Expression {
 class Begin extends Node implements Expression {
     Begin(){
     }
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print("{");
     }
 
@@ -5241,7 +5320,7 @@ class Begin extends Node implements Expression {
 class End extends Node implements Expression {
     End(){
     }
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print("}");
     }
 
@@ -5261,10 +5340,10 @@ class Declaration_type_of_dcl_list_of_dcls extends Node implements Expression {
         this.type_of_dcl = type_of_dcl;
         this.list_of_dcls = list_of_dcls;
     }
-    public void dump(PrintStream printStream) {
-        this.type_of_dcl.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.type_of_dcl.dump(printStream, map);
         printStream.print(' ');
-        this.list_of_dcls.dump(printStream);
+        this.list_of_dcls.dump(printStream, map);
         printStream.println(";");
     }
 
@@ -5277,32 +5356,6 @@ class Declaration_type_of_dcl_list_of_dcls extends Node implements Expression {
     }
 }
 
-class Declaration_type_of_dcl_list_of_dcls_instruction extends Node implements Expression {
-    Expression type_of_dcl;
-    Expression list_of_dcls;
-    Expression instruction;
-    Declaration_type_of_dcl_list_of_dcls_instruction(Expression type_of_dcl, Expression list_of_dcls, Expression instruction){
-        this.type_of_dcl = type_of_dcl;
-        this.list_of_dcls = list_of_dcls;
-        this.instruction = instruction;
-    }
-    public void dump(PrintStream printStream) {
-        this.type_of_dcl.dump(printStream);
-        printStream.print(' ');
-        this.list_of_dcls.dump(printStream);
-        printStream.print(" = ");
-        this.instruction.dump(printStream);
-    }
-
-    @Override
-    public boolean equals(Object node) {
-        if(this.getClass() != node.getClass())
-            return false;
-        else
-            return this.type_of_dcl.equals(((Declaration_type_of_dcl_list_of_dcls_instruction) node).type_of_dcl) && this.list_of_dcls.equals(((Declaration_type_of_dcl_list_of_dcls_instruction) node).list_of_dcls) && this.instruction.equals(((Declaration_type_of_dcl_list_of_dcls_instruction) node).instruction);
-    }
-}
-
 class Declaration_fespace_def_list extends Node implements Expression {
     String fespace;
     Expression fespace_def_list;
@@ -5310,9 +5363,9 @@ class Declaration_fespace_def_list extends Node implements Expression {
         this.fespace = fespace;
         this.fespace_def_list = fespace_def_list;
     }
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print(this.fespace + ' ');
-        this.fespace_def_list.dump(printStream);
+        this.fespace_def_list.dump(printStream, map);
         printStream.println(";");
     }
 
@@ -5330,8 +5383,8 @@ class Declaration_spaceIDs extends Node implements Expression {
     Declaration_spaceIDs(Expression spaceIDs){
         this.spaceIDs = spaceIDs;
     }
-    public void dump(PrintStream printStream) {
-        this.spaceIDs.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.spaceIDs.dump(printStream, map);
         printStream.println(";");
     }
 
@@ -5352,9 +5405,9 @@ class Declaration_function_id_expr extends Node implements Expression {
         this.id = id;
         this.expr = expr;
     }
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print(this.function + ' ' + this.id + " = ");
-        this.expr.dump(printStream);
+        this.expr.dump(printStream, map);
         printStream.println(";");
     }
 
@@ -5377,13 +5430,13 @@ class Declaration_function_type_of_dcl_id extends Node implements Expression {
         this.list_of_id_args = list_of_id_args;
         this.instructions = instructions;
     }
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print(this.function + ' ');
-        this.type_of_dcl.dump(printStream);
+        this.type_of_dcl.dump(printStream, map);
         printStream.print(' ' + this.id + '(');
-        this.list_of_id_args.dump(printStream);
-        printStream.println(')' + '{');
-        this.instructions.dump(printStream);
+        this.list_of_id_args.dump(printStream, map);
+        printStream.println(") {");
+        this.instructions.dump(printStream, map);
         printStream.println('}');
     }
 
@@ -5406,11 +5459,11 @@ class Function_id_list_of_id_args extends Node implements Expression {
         this.no_comma_expr = no_comma_expr;
     }
 
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print(this.function + ' ' + this.id + '(');
-        this.list_of_id_args.dump(printStream);
+        this.list_of_id_args.dump(printStream, map);
         printStream.print(')' + " = ");
-        this.no_comma_expr.dump(printStream);
+        this.no_comma_expr.dump(printStream, map);
         printStream.println(';');
     }
 
@@ -5429,8 +5482,8 @@ class Fespace_def_list_fespace_def extends Node implements Expression {
         this.fespace_def = fespace_def;
     }
 
-    public void dump(PrintStream printStream) {
-        this.fespace_def.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.fespace_def.dump(printStream, map);
     }
 
     @Override
@@ -5449,10 +5502,10 @@ class Fespace_def_list_comma_fespace_def extends Node implements Expression {
         this.fespace_def = fespace_def;
     }
 
-    public void dump(PrintStream printStream) {
-        this.fespace_def_list.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.fespace_def_list.dump(printStream, map);
         printStream.print(", ");
-        this.fespace_def.dump(printStream);
+        this.fespace_def.dump(printStream, map);
     }
 
     @Override
@@ -5472,9 +5525,9 @@ class Fespace_def extends Node implements Expression {
         this.parameters_list = parameters_list;
     }
 
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print(this.id + "(");
-        this.parameters_list.dump(printStream);
+        this.parameters_list.dump(printStream, map);
         printStream.print(")");
     }
 
@@ -5494,10 +5547,10 @@ class SpaceIDs_fespace_spaceIDb extends Node implements Expression {
         this.spaceIDb = spaceIDb;
     }
 
-    public void dump(PrintStream printStream) {
-        this.fespace.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.fespace.dump(printStream, map);
         printStream.print(" ");
-        this.spaceIDb.dump(printStream);
+        this.spaceIDb.dump(printStream, map);
     }
 
     @Override
@@ -5518,10 +5571,10 @@ class SpaceIDs_fespace_array_ID_spaceIDa extends Node implements Expression {
         this.spaceIDa = spaceIDa;
     }
 
-    public void dump(PrintStream printStream) {
-        this.fespace.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.fespace.dump(printStream, map);
         printStream.print(" [" + this.id + "] ");
-        this.spaceIDa.dump(printStream);
+        this.spaceIDa.dump(printStream, map);
     }
 
     @Override
@@ -5539,8 +5592,8 @@ class SpaceIDb_id_space extends Node implements Expression {
         this.id_space = id_space;
     }
 
-    public void dump(PrintStream printStream) {
-        this.id_space.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.id_space.dump(printStream, map);
     }
 
     @Override
@@ -5559,10 +5612,10 @@ class SpaceIDb_comma_id_space extends Node implements Expression {
         this.id_space = id_space;
     }
 
-    public void dump(PrintStream printStream) {
-        this.spaceIDb.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.spaceIDb.dump(printStream, map);
         printStream.print(", ");
-        this.id_space.dump(printStream);
+        this.id_space.dump(printStream, map);
     }
 
     @Override
@@ -5580,8 +5633,8 @@ class SpaceIDa_id_array_space extends Node implements Expression {
         this.id_array_space = id_array_space;
     }
 
-    public void dump(PrintStream printStream) {
-        this.id_array_space.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.id_array_space.dump(printStream, map);
     }
 
     @Override
@@ -5600,10 +5653,10 @@ class SpaceIDa_comma_id_array_space extends Node implements Expression {
         this.id_array_space = id_array_space;
     }
 
-    public void dump(PrintStream printStream) {
-        this.spaceIDa.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.spaceIDa.dump(printStream, map);
         printStream.print(", ");
-        this.id_array_space.dump(printStream);
+        this.id_array_space.dump(printStream, map);
     }
 
     @Override
@@ -5620,7 +5673,7 @@ class Fespace123_fespace extends Node implements Expression {
     Fespace123_fespace(String fespace){
         this.fespace = fespace;
     }
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print(this.fespace);
     }
 
@@ -5638,7 +5691,7 @@ class Fespace123_fespace1 extends Node implements Expression {
     Fespace123_fespace1(String fespace1){
         this.fespace1 = fespace1;
     }
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print(this.fespace1);
     }
 
@@ -5656,7 +5709,7 @@ class Fespace123_fespace3 extends Node implements Expression {
     Fespace123_fespace3(String fespace3){
         this.fespace3 = fespace3;
     }
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print(this.fespace3);
     }
 
@@ -5674,7 +5727,7 @@ class Fespace123_fespaceS extends Node implements Expression {
     Fespace123_fespaceS(String fespaceS){
         this.fespaceS = fespaceS;
     }
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print(this.fespaceS);
     }
 
@@ -5692,7 +5745,7 @@ class Fespace123_fespaceL extends Node implements Expression {
     Fespace123_fespaceL(String fespaceL){
         this.fespaceL = fespaceL;
     }
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print(this.fespaceL);
     }
 
@@ -5710,8 +5763,8 @@ class Fespace_fespace123 extends Node implements Expression {
     Fespace_fespace123(Expression fespace123){
         this.fespace123 = fespace123;
     }
-    public void dump(PrintStream printStream) {
-        this.fespace123.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.fespace123.dump(printStream, map);
     }
 
     @Override
@@ -5730,8 +5783,8 @@ class Fespace_fespace123_vector extends Node implements Expression {
         this.fespace123 = fespace123;
         this.id = id;
     }
-    public void dump(PrintStream printStream) {
-        this.fespace123.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.fespace123.dump(printStream, map);
         printStream.print(" <" + this.id + '>');
     }
 
@@ -5752,9 +5805,9 @@ class Id_array_space_id_no_set_expr extends Node implements Expression {
         this.no_set_expr = no_set_expr;
     }
 
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print(this.id + "(");
-        this.no_set_expr.dump(printStream);
+        this.no_set_expr.dump(printStream, map);
         printStream.print(")");
     }
 
@@ -5774,12 +5827,12 @@ class Id_array_space_array_list_of_id1_no_set_expr extends Node implements Expre
         this.no_set_expr = no_set_expr;
     }
 
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print("[");
-        this.list_of_id1.dump(printStream);
+        this.list_of_id1.dump(printStream, map);
         printStream.print("]");
         printStream.print("(");
-        this.no_set_expr.dump(printStream);
+        this.no_set_expr.dump(printStream, map);
         printStream.print(")");
     }
 
@@ -5798,7 +5851,7 @@ class Id_space_id extends Node implements Expression {
         this.id = id;
     }
 
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print(this.id);
     }
 
@@ -5819,9 +5872,9 @@ class Id_space_array_no_set_expr extends Node implements Expression {
         this.no_set_expr = no_set_expr;
     }
 
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print(this.id + "[");
-        this.no_set_expr.dump(printStream);
+        this.no_set_expr.dump(printStream, map);
         printStream.print("]");
     }
 
@@ -5842,9 +5895,9 @@ class Id_space_no_set_expr extends Node implements Expression {
         this.no_set_expr = no_set_expr;
     }
 
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print(this.id + " = ");
-        this.no_set_expr.dump(printStream);
+        this.no_set_expr.dump(printStream, map);
     }
 
     @Override
@@ -5862,9 +5915,9 @@ class Id_space_array_list_of_id1 extends Node implements Expression {
         this.list_of_id1 = list_of_id1;
     }
 
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print("[");
-        this.list_of_id1.dump(printStream);
+        this.list_of_id1.dump(printStream, map);
         printStream.print("]");
     }
 
@@ -5884,12 +5937,12 @@ class Id_space_array_list_of_id1_array_no_set_expr extends Node implements Expre
         this.no_set_expr = no_set_expr;
     }
 
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print("[");
-        this.list_of_id1.dump(printStream);
+        this.list_of_id1.dump(printStream, map);
         printStream.print("] ");
         printStream.print("[");
-        this.no_set_expr.dump(printStream);
+        this.no_set_expr.dump(printStream, map);
         printStream.print("]");
     }
 
@@ -5909,11 +5962,11 @@ class Id_space_array_list_of_id1_no_set_expr extends Node implements Expression 
         this.no_set_expr = no_set_expr;
     }
 
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print("[");
-        this.list_of_id1.dump(printStream);
+        this.list_of_id1.dump(printStream, map);
         printStream.print("] = ");
-        this.no_set_expr.dump(printStream);
+        this.no_set_expr.dump(printStream, map);
     }
 
     @Override
@@ -5932,7 +5985,7 @@ class Type_of_dcl_id extends Node implements Expression {
         this.id = id;
     }
 
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print(this.id);
     }
 
@@ -5952,7 +6005,7 @@ class Type_of_dcl_id_array extends Node implements Expression {
         this.id2 = id2;
     }
 
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print(this.id1 + '[' + this.id2 + ']');
     }
 
@@ -5973,7 +6026,7 @@ class Type_of_dcl_id_array_array extends Node implements Expression {
         this.id3 = id3;
     }
 
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print(this.id1 + '[' + this.id2 + ']' + '[' + this.id3 + ']');
     }
 
@@ -5994,7 +6047,7 @@ class Type_of_dcl_id_matrix extends Node implements Expression {
         this.id3 = id3;
     }
 
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print(this.id1 + '[' + this.id2 + ", " + this.id3 + ']');
     }
 
@@ -6016,7 +6069,7 @@ class Type_of_dcl_id_matrix_array extends Node implements Expression {
         this.id4 = id4;
     }
 
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print(this.id1 + '[' + this.id2 + ", " + this.id3 + ']' + '[' + this.id4 + ']');
     }
 
@@ -6036,7 +6089,7 @@ class Type_of_dcl_id_vector extends Node implements Expression {
         this.id2 = id2;
     }
 
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print(this.id1 + '<' + this.id2 + '>');
     }
 
@@ -6057,7 +6110,7 @@ class Type_of_dcl_id_vector_array extends Node implements Expression {
         this.id3 = id3;
     }
 
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print(this.id1 + '<' + this.id2 + '>' + '[' + this.id3 + ']');
     }
 
@@ -6079,7 +6132,7 @@ class Type_of_dcl_id_vector_matrix extends Node implements Expression {
         this.id4 = id4;
     }
 
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print(this.id1  + '<' + this.id2 + '>' + '[' + this.id3 + ", " + this.id4 + ']');
     }
 
@@ -6098,8 +6151,8 @@ class Parameters_list_no_set_expr extends Node implements Expression {
         this.no_set_expr = no_set_expr;
     }
 
-    public void dump(PrintStream printStream) {
-        this.no_set_expr.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.no_set_expr.dump(printStream, map);
     }
 
     @Override
@@ -6118,7 +6171,7 @@ class Parameters_list_fespace_id extends Node implements Expression {
         this.id = id;
     }
 
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print(this.fespace + ' ' + this.id);
     }
 
@@ -6138,7 +6191,7 @@ class Parameters_list_fespace1_id extends Node implements Expression {
         this.id = id;
     }
 
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print(this.fespace1 + ' ' + this.id);
     }
 
@@ -6158,7 +6211,7 @@ class Parameters_list_fespace3_id extends Node implements Expression {
         this.id = id;
     }
 
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print(this.fespace3 + ' ' + this.id);
     }
 
@@ -6178,7 +6231,7 @@ class Parameters_list_fespaceS_id extends Node implements Expression {
         this.id = id;
     }
 
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print(this.fespaceS + ' ' + this.id);
     }
 
@@ -6198,7 +6251,7 @@ class Parameters_list_fespaceL_id extends Node implements Expression {
         this.id = id;
     }
 
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print(this.fespaceL + ' ' + this.id);
     }
 
@@ -6219,9 +6272,9 @@ class Parameters_list_id_no_set_expr extends Node implements Expression {
         this.no_set_expr = no_set_expr;
     }
 
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print(this.id + " = ");
-        this.no_set_expr.dump(printStream);
+        this.no_set_expr.dump(printStream, map);
     }
 
     @Override
@@ -6240,10 +6293,10 @@ class Parameters_list_comma_no_set_expr extends Node implements Expression {
         this.no_set_expr = no_set_expr;
     }
 
-    public void dump(PrintStream printStream) {
-        this.parameters_list.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.parameters_list.dump(printStream, map);
         printStream.print(", ");
-        this.no_set_expr.dump(printStream);
+        this.no_set_expr.dump(printStream, map);
     }
 
     @Override
@@ -6263,12 +6316,12 @@ class Parameters_list_comma_id_no_set_expr extends Node implements Expression {
         this.no_set_expr = no_set_expr;
     }
 
-    public void dump(PrintStream printStream) {
-        this.parameters_list.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.parameters_list.dump(printStream, map);
         printStream.print(", ");
-        this.id.dump(printStream);
+        this.id.dump(printStream, map);
         printStream.print(" = ");
-        this.no_set_expr.dump(printStream);
+        this.no_set_expr.dump(printStream, map);
     }
 
     @Override
@@ -6286,7 +6339,7 @@ class List_of_dcls_id extends Node implements Expression {
         this.id = id;
     }
 
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print(this.id);
     }
 
@@ -6308,9 +6361,9 @@ class List_of_dcls_id_no_comma_expr extends Node implements Expression {
         this.no_comma_expr = no_comma_expr;
     }
 
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print(this.id + " = ");
-        this.no_comma_expr.dump(printStream);
+        this.no_comma_expr.dump(printStream, map);
     }
 
     @Override
@@ -6330,9 +6383,9 @@ class List_of_dcls_id_parameters_list extends Node implements Expression {
         this.parameters_list = parameters_list;
     }
 
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print(this.id + "(");
-        this.parameters_list.dump(printStream);
+        this.parameters_list.dump(printStream, map);
         printStream.print(")");
     }
 
@@ -6352,10 +6405,10 @@ class List_of_dcls_comma extends Node implements Expression {
         this.list_of_dcls2 = list_of_dcls2;
     }
 
-    public void dump(PrintStream printStream) {
-        this.list_of_dcls1.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.list_of_dcls1.dump(printStream, map);
         printStream.print(", ");
-        this.list_of_dcls2.dump(printStream);
+        this.list_of_dcls2.dump(printStream, map);
     }
 
     @Override
@@ -6373,7 +6426,7 @@ class Id_id extends Node implements Expression {
         this.id = id;
     }
 
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print(this.id);
     }
 
@@ -6392,7 +6445,7 @@ class Id_fespace extends Node implements Expression {
         this.fespace = fespace;
     }
 
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print(this.fespace);
     }
 
@@ -6411,7 +6464,7 @@ class Id_fespace3 extends Node implements Expression {
         this.fespace3 = fespace3;
     }
 
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print(this.fespace3);
     }
 
@@ -6430,7 +6483,7 @@ class Id_fespaceS extends Node implements Expression {
         this.fespaceS = fespaceS;
     }
 
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print(this.fespaceS);
     }
 
@@ -6449,7 +6502,7 @@ class Id_fespaceL extends Node implements Expression {
         this.fespaceL = fespaceL;
     }
 
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print(this.fespaceL);
     }
 
@@ -6468,7 +6521,7 @@ class Id_fespace1 extends Node implements Expression {
         this.fespace1 = fespace1;
     }
 
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print(this.fespace1);
     }
 
@@ -6487,8 +6540,8 @@ class List_of_id1_id extends Node implements Expression {
         this.id = id;
     }
 
-    public void dump(PrintStream printStream) {
-        this.id.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.id.dump(printStream, map);
     }
 
     @Override
@@ -6508,10 +6561,10 @@ class List_of_id1_comma_id extends Node implements Expression {
         this.id = id;
     }
 
-    public void dump(PrintStream printStream) {
-        this.list_of_id1.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.list_of_id1.dump(printStream, map);
         printStream.print(", ");
-        this.id.dump(printStream);
+        this.id.dump(printStream, map);
     }
 
     @Override
@@ -6525,7 +6578,7 @@ class List_of_id1_comma_id extends Node implements Expression {
 
 class List_of_id_args_ extends Node implements Expression {
     List_of_id_args_() {}
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print("");
     }
 
@@ -6544,8 +6597,8 @@ class List_of_id_args_id extends Node implements Expression {
         this.id = id;
     }
 
-    public void dump(PrintStream printStream) {
-        this.id.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.id.dump(printStream, map);
     }
 
     @Override
@@ -6564,10 +6617,10 @@ class List_of_id_args_set_no_comma_expr_to_id extends Node implements Expression
         this.no_comma_expr = no_comma_expr;
     }
 
-    public void dump(PrintStream printStream) {
-        this.id.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.id.dump(printStream, map);
         printStream.print(" = ");
-        this.no_comma_expr.dump(printStream);
+        this.no_comma_expr.dump(printStream, map);
     }
 
     @Override
@@ -6586,9 +6639,9 @@ class List_of_id_args_fespace_id extends Node implements Expression {
         this.fespace = fespace;
         this.id = id;
     }
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print(this.fespace + " ");
-        this.id.dump(printStream);
+        this.id.dump(printStream, map);
     }
 
     @Override
@@ -6607,9 +6660,9 @@ class List_of_id_args_fespace_and_id extends Node implements Expression {
         this.fespace = fespace;
         this.id = id;
     }
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print(this.fespace + " & ");
-        this.id.dump(printStream);
+        this.id.dump(printStream, map);
     }
 
     @Override
@@ -6628,9 +6681,9 @@ class List_of_id_args_fespace3_id extends Node implements Expression {
         this.fespace3 = fespace3;
         this.id = id;
     }
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print(this.fespace3 + " ");
-        this.id.dump(printStream);
+        this.id.dump(printStream, map);
     }
 
     @Override
@@ -6649,9 +6702,9 @@ class List_of_id_args_fespace3_and_id extends Node implements Expression {
         this.fespace3 = fespace3;
         this.id = id;
     }
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print(this.fespace3 + " & ");
-        this.id.dump(printStream);
+        this.id.dump(printStream, map);
     }
 
     @Override
@@ -6670,9 +6723,9 @@ class List_of_id_args_fespaceS_id extends Node implements Expression {
         this.fespaceS = fespaceS;
         this.id = id;
     }
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print(this.fespaceS + " ");
-        this.id.dump(printStream);
+        this.id.dump(printStream, map);
     }
 
     @Override
@@ -6691,9 +6744,9 @@ class List_of_id_args_fespaceS_and_id extends Node implements Expression {
         this.fespaceS = fespaceS;
         this.id = id;
     }
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print(this.fespaceS + " & ");
-        this.id.dump(printStream);
+        this.id.dump(printStream, map);
     }
 
     @Override
@@ -6712,9 +6765,9 @@ class List_of_id_args_fespaceL_id extends Node implements Expression {
         this.fespaceL = fespaceL;
         this.id = id;
     }
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print(this.fespaceL + " ");
-        this.id.dump(printStream);
+        this.id.dump(printStream, map);
     }
 
     @Override
@@ -6733,9 +6786,9 @@ class List_of_id_args_fespaceL_and_id extends Node implements Expression {
         this.fespaceL = fespaceL;
         this.id = id;
     }
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print(this.fespaceL + " & ");
-        this.id.dump(printStream);
+        this.id.dump(printStream, map);
     }
 
     @Override
@@ -6753,10 +6806,10 @@ class List_of_id_args_type_of_dcl_id extends Node implements Expression {
         this.type_of_dcl = type_of_dcl;
         this.id = id;
     }
-    public void dump(PrintStream printStream) {
-        this.type_of_dcl.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.type_of_dcl.dump(printStream, map);
         printStream.print(" ");
-        this.id.dump(printStream);
+        this.id.dump(printStream, map);
     }
 
     @Override
@@ -6774,10 +6827,10 @@ class List_of_id_args_type_of_dcl_and_id extends Node implements Expression {
         this.type_of_dcl = type_of_dcl;
         this.id = id;
     }
-    public void dump(PrintStream printStream) {
-        this.type_of_dcl.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.type_of_dcl.dump(printStream, map);
         printStream.print(" & ");
-        this.id.dump(printStream);
+        this.id.dump(printStream, map);
     }
 
     @Override
@@ -6794,9 +6847,9 @@ class List_of_id_args_array extends Node implements Expression {
     List_of_id_args_array(Expression list_of_id_args) {
         this.list_of_id_args = list_of_id_args;
     }
-    public void dump(PrintStream printStream) {
+    public void dump(PrintStream printStream, Map<String, Double> map) {
         printStream.print("[");
-        this.list_of_id_args.dump(printStream);
+        this.list_of_id_args.dump(printStream, map);
         printStream.print("]");
     }
 
@@ -6815,10 +6868,10 @@ class List_of_id_args_comma_id extends Node implements Expression {
         this.list_of_id_args = list_of_id_args;
         this.id = id;
     }
-    public void dump(PrintStream printStream) {
-        this.list_of_id_args.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.list_of_id_args.dump(printStream, map);
         printStream.print(", ");
-        this.id.dump(printStream);
+        this.id.dump(printStream, map);
     }
 
     @Override
@@ -6836,10 +6889,10 @@ class List_of_id_args_comma_array extends Node implements Expression {
         this.list_of_id_args1 = list_of_id_args1;
         this.list_of_id_args2 = list_of_id_args2;
     }
-    public void dump(PrintStream printStream) {
-        this.list_of_id_args1.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.list_of_id_args1.dump(printStream, map);
         printStream.print(", [");
-        this.list_of_id_args2.dump(printStream);
+        this.list_of_id_args2.dump(printStream, map);
         printStream.print("]");
     }
 
@@ -6859,12 +6912,12 @@ class List_of_id_args_comma_id_no_comma_expr extends Node implements Expression 
         this.id = id;
         this.no_comma_expr = no_comma_expr;
     }
-    public void dump(PrintStream printStream) {
-        this.list_of_id_args.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.list_of_id_args.dump(printStream, map);
         printStream.print(", ");
-        this.id.dump(printStream);
+        this.id.dump(printStream, map);
         printStream.print(" = ");
-        this.no_comma_expr.dump(printStream);
+        this.no_comma_expr.dump(printStream, map);
     }
 
     @Override
@@ -6884,10 +6937,10 @@ class List_of_id_args_comma_fespace_id extends Node implements Expression {
         this.fespace = fespace;
         this.id = id;
     }
-    public void dump(PrintStream printStream) {
-        this.list_of_id_args.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.list_of_id_args.dump(printStream, map);
         printStream.print(", " + this.fespace + " ");
-        this.id.dump(printStream);
+        this.id.dump(printStream, map);
     }
 
     @Override
@@ -6907,10 +6960,10 @@ class List_of_id_args_comma_fespace_and_id extends Node implements Expression {
         this.fespace = fespace;
         this.id = id;
     }
-    public void dump(PrintStream printStream) {
-        this.list_of_id_args.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.list_of_id_args.dump(printStream, map);
         printStream.print(", " + this.fespace + " & ");
-        this.id.dump(printStream);
+        this.id.dump(printStream, map);
     }
 
     @Override
@@ -6930,10 +6983,10 @@ class List_of_id_args_comma_fespace3_id extends Node implements Expression {
         this.fespace3 = fespace3;
         this.id = id;
     }
-    public void dump(PrintStream printStream) {
-        this.list_of_id_args.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.list_of_id_args.dump(printStream, map);
         printStream.print(", " + this.fespace3 + " ");
-        this.id.dump(printStream);
+        this.id.dump(printStream, map);
     }
 
     @Override
@@ -6953,10 +7006,10 @@ class List_of_id_args_comma_fespace3_and_id extends Node implements Expression {
         this.fespace3 = fespace3;
         this.id = id;
     }
-    public void dump(PrintStream printStream) {
-        this.list_of_id_args.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.list_of_id_args.dump(printStream, map);
         printStream.print(", " + this.fespace3 + " & ");
-        this.id.dump(printStream);
+        this.id.dump(printStream, map);
     }
 
     @Override
@@ -6976,10 +7029,10 @@ class List_of_id_args_comma_fespaceS_id extends Node implements Expression {
         this.fespaceS = fespaceS;
         this.id = id;
     }
-    public void dump(PrintStream printStream) {
-        this.list_of_id_args.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.list_of_id_args.dump(printStream, map);
         printStream.print(", " + this.fespaceS + " ");
-        this.id.dump(printStream);
+        this.id.dump(printStream, map);
     }
 
     @Override
@@ -6999,10 +7052,10 @@ class List_of_id_args_comma_fespaceS_and_id extends Node implements Expression {
         this.fespaceS = fespaceS;
         this.id = id;
     }
-    public void dump(PrintStream printStream) {
-        this.list_of_id_args.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.list_of_id_args.dump(printStream, map);
         printStream.print(", " + this.fespaceS + " & ");
-        this.id.dump(printStream);
+        this.id.dump(printStream, map);
     }
 
     @Override
@@ -7022,10 +7075,10 @@ class List_of_id_args_comma_fespaceL_id extends Node implements Expression {
         this.fespaceL = fespaceL;
         this.id = id;
     }
-    public void dump(PrintStream printStream) {
-        this.list_of_id_args.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.list_of_id_args.dump(printStream, map);
         printStream.print(", " + this.fespaceL + " ");
-        this.id.dump(printStream);
+        this.id.dump(printStream, map);
     }
 
     @Override
@@ -7045,10 +7098,10 @@ class List_of_id_args_comma_fespaceL_and_id extends Node implements Expression {
         this.fespaceL = fespaceL;
         this.id = id;
     }
-    public void dump(PrintStream printStream) {
-        this.list_of_id_args.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.list_of_id_args.dump(printStream, map);
         printStream.print(", " + this.fespaceL + " & ");
-        this.id.dump(printStream);
+        this.id.dump(printStream, map);
     }
 
     @Override
@@ -7067,12 +7120,12 @@ class List_of_id_args_comma_type_of_dcl_id extends Node implements Expression {
         this.type_of_dcl = type_of_dcl;
         this.id = id;
     }
-    public void dump(PrintStream printStream) {
-        this.list_of_id_args.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.list_of_id_args.dump(printStream, map);
         printStream.print(", ");
-        this.type_of_dcl.dump(printStream);
+        this.type_of_dcl.dump(printStream, map);
         printStream.print(" ");
-        this.id.dump(printStream);
+        this.id.dump(printStream, map);
     }
 
     @Override
@@ -7092,12 +7145,12 @@ class List_of_id_args_comma_type_of_dcl_and_id extends Node implements Expressio
         this.type_of_dcl = type_of_dcl;
         this.id = id;
     }
-    public void dump(PrintStream printStream) {
-        this.list_of_id_args.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.list_of_id_args.dump(printStream, map);
         printStream.print(", ");
-        this.type_of_dcl.dump(printStream);
+        this.type_of_dcl.dump(printStream, map);
         printStream.print(" & ");
-        this.id.dump(printStream);
+        this.id.dump(printStream, map);
     }
 
     @Override
@@ -7114,8 +7167,8 @@ class Instructions_ extends Node implements Expression {
     Instructions_(Expression instruction){
         this.instruction = instruction;
     }
-    public void dump(PrintStream printStream) {
-        this.instruction.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.instruction.dump(printStream, map);
     }
 
     @Override
@@ -7134,10 +7187,10 @@ class Instructions_instruction extends Node implements Expression {
         this.instructions = instructions;
         this.instruction = instruction;
     }
-    public void dump(PrintStream printStream) {
-        this.instructions.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.instructions.dump(printStream, map);
         printStream.print(" ");
-        this.instruction.dump(printStream);
+        this.instruction.dump(printStream, map);
     }
 
     @Override
@@ -7154,8 +7207,8 @@ class Input extends Node implements Expression {
     Input(Expression instructions){
         this.instructions = instructions;
     }
-    public void dump(PrintStream printStream) {
-        this.instructions.dump(printStream);
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.instructions.dump(printStream, map);
     }
 
     @Override
@@ -7164,5 +7217,40 @@ class Input extends Node implements Expression {
             return false;
         else
             return this.instructions.equals(((Input) node).instructions);
+    }
+}
+
+class Templatevar extends Node implements Expression {
+    String id1, id2;
+    Templatevar(String id1, String id2){
+        this.id1 = id1;
+        this.id2 = id2;
+    }
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        printStream.print("$ {" + this.id1 + ':' + this.id2 + '}');
+    }
+    @Override
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.id1.equals(((Templatevar) node).id1) && this.id2.equals(((Templatevar) node).id2);
+    }
+}
+
+class Templatevar_ extends Node implements Expression {
+    Expression templatevar;
+    Templatevar_(Expression templatevar){
+        this.templatevar = templatevar;
+    }
+    public void dump(PrintStream printStream, Map<String, Double> map) {
+        this.templatevar.dump(printStream, map);
+    }
+    @Override
+    public boolean equals(Object node) {
+        if(this.getClass() != node.getClass())
+            return false;
+        else
+            return this.templatevar.equals(((Templatevar_) node).templatevar);
     }
 }
