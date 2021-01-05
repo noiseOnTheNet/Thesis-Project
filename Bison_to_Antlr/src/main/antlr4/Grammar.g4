@@ -322,7 +322,7 @@ primary
             | templatevar                                   #primary_templatevar //*
             ;
 
-templatevar: '$' '{' ID ':' ID '}' ;
+templatevar: '$' '{' ID ':' expr '}' ;
 
 FESPACE  : 'fespace';
 FESPACE1 : 'fespace1';
