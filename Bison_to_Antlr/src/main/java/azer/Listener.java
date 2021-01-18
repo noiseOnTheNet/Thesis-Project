@@ -1,6 +1,5 @@
 package azer;
-import azer.freefem.GrammarListener;
-import azer.freefem.GrammarParser;
+import azer.freefem.*;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.TerminalNode;
@@ -24,7 +23,7 @@ class Node{
 }
 
 public class Listener implements GrammarListener {
-    Stack<Node> stack = new Stack();
+    public Stack<Node> stack = new Stack();
     @Override
     public void enterStart(GrammarParser.StartContext ctx) {
 
@@ -2711,8 +2710,7 @@ public class Listener implements GrammarListener {
 
     @Override
     public void exitTemplatevar(GrammarParser.TemplatevarContext ctx) {
-        Expression expr = (Expression) this.stack.pop();
-        Templatevar node = new Templatevar(ctx.ID().getText(), expr);
+        Templatevar node = new Templatevar(ctx.ID(0).getText(), ctx.ID(1).getText());
         this.stack.add(node);
     }
 
@@ -2775,7 +2773,7 @@ class Primary_id extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
     }
 
     @Override
@@ -2797,7 +2795,7 @@ class Primary_dnum extends Node implements Expression{
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
 
     }
 
@@ -2820,7 +2818,7 @@ class Primary_lnum extends Node implements Expression{
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
 
     }
 
@@ -2843,7 +2841,7 @@ class Primary_cnum extends Node implements Expression{
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
 
     }
 
@@ -2867,7 +2865,7 @@ class Primary_string extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
     }
 
     @Override
@@ -2894,7 +2892,7 @@ class Primary_parameters extends Node implements Expression{
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.primary.collect(map);
         this.parameters.collect(map);
     }
@@ -2923,7 +2921,7 @@ class Primary_array_sub_script_expr extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.primary.collect(map);
         this.sub_script_expr.collect(map);
     }
@@ -2955,7 +2953,7 @@ class Primary_matrix extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.primary.collect(map);
         this.sub_script_expr1.collect(map);
         this.sub_script_expr2.collect(map);
@@ -2981,7 +2979,7 @@ class Primary_empty_array extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.primary.collect(map);
     }
 
@@ -3007,7 +3005,7 @@ class Primary_dot_id extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.primary.collect(map);
     }
 
@@ -3031,7 +3029,7 @@ class Primary_fespace_dot_id extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
     }
 
     @Override
@@ -3057,7 +3055,7 @@ class Primary_fespace_parameters extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.parameters.collect(map);
     }
 
@@ -3081,7 +3079,7 @@ class Primary_fespace1_dot_id extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
     }
 
     @Override
@@ -3107,7 +3105,7 @@ class Primary_fespace1_parameters extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.parameters.collect(map);
     }
 
@@ -3131,7 +3129,7 @@ class Primary_fespace3_dot_id extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
     }
 
     @Override
@@ -3157,7 +3155,7 @@ class Primary_fespace3_parameters extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.parameters.collect(map);
     }
 
@@ -3181,7 +3179,7 @@ class Primary_fespaceS_dot_id extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
     }
 
     @Override
@@ -3207,7 +3205,7 @@ class Primary_fespaceS_parameters extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.parameters.collect(map);
     }
 
@@ -3231,7 +3229,7 @@ class Primary_fespaceL_dot_id extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
     }
 
     @Override
@@ -3257,7 +3255,7 @@ class Primary_fespaceL_parameters extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.parameters.collect(map);
     }
 
@@ -3282,7 +3280,7 @@ class Primary_increment extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.primary.collect(map);
     }
 
@@ -3306,7 +3304,7 @@ class Primary_decrement extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.primary.collect(map);
     }
 
@@ -3333,7 +3331,7 @@ class Primary_id_sub_script_expr extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.sub_script_expr.collect(map);
     }
 
@@ -3360,7 +3358,7 @@ class Primary_id_parameterstype extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.parameterstype.collect(map);
     }
 
@@ -3385,7 +3383,7 @@ class Primary_expr extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.expr.collect(map);
     }
 
@@ -3410,7 +3408,7 @@ class Primary_array_ extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.array.collect(map);
     }
 
@@ -3433,7 +3431,7 @@ class Primaryp_primary extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.primary.collect(map);
     }
 
@@ -3457,7 +3455,7 @@ class Primaryp_primary_transpose extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.primary.collect(map);
     }
 
@@ -3480,7 +3478,7 @@ class Pow_expr_primary extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.primaryp.collect(map);
     }
 
@@ -3507,7 +3505,7 @@ class Pow_expr_power extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.primaryp.collect(map);
         this.unary_expr.collect(map);
     }
@@ -3535,7 +3533,7 @@ class Pow_expr_underscore extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.primaryp.collect(map);
         this.unary_expr.collect(map);
     }
@@ -3559,7 +3557,7 @@ class Unary_expr_pow_expr extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.pow_expr.collect(map);
     }
 
@@ -3586,7 +3584,7 @@ class Unary_expr_unop_pow_expr extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.unop.collect(map);
         this.pow_expr.collect(map);
     }
@@ -3610,7 +3608,7 @@ class Array_no_comma_expr extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.no_comma_expr.collect(map);
     }
 
@@ -3637,7 +3635,7 @@ class Array_comma_no_comma_expr extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.array.collect(map);
         this.no_comma_expr.collect(map);
     }
@@ -3658,7 +3656,7 @@ class Parameters_ extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
     }
 
     @Override
@@ -3680,7 +3678,7 @@ class Parameters_fespace extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
     }
 
     @Override
@@ -3702,7 +3700,7 @@ class Parameters_fespace1 extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
     }
 
     @Override
@@ -3724,7 +3722,7 @@ class Parameters_fespace3 extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
     }
 
     @Override
@@ -3746,7 +3744,7 @@ class Parameters_fespaceS extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
     }
 
     @Override
@@ -3768,7 +3766,7 @@ class Parameters_fespaceL extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
     }
 
     @Override
@@ -3794,7 +3792,7 @@ class Parameters_id_equal_no_set_expr extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.id.collect(map);
         this.no_set_expr.collect(map);
     }
@@ -3818,7 +3816,7 @@ class Parameters_sub_scripts_expr extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.sub_script_expr.collect(map);
     }
 
@@ -3844,7 +3842,7 @@ class Parameters_comma_fespace extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.parameters.collect(map);
     }
 
@@ -3870,7 +3868,7 @@ class Parameters_comma_fespace1 extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.parameters.collect(map);
     }
 
@@ -3896,7 +3894,7 @@ class Parameters_comma_fespace3 extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.parameters.collect(map);
     }
 
@@ -3922,7 +3920,7 @@ class Parameters_comma_fespaceS extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.parameters.collect(map);
     }
 
@@ -3948,7 +3946,7 @@ class Parameters_comma_fespaceL extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.parameters.collect(map);
     }
 
@@ -3975,7 +3973,7 @@ class Parameters_comma_sub_script_expr extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.parameters.collect(map);
         this.sub_script_expr.collect(map);
     }
@@ -4007,7 +4005,7 @@ class Parameters_comma_id_equal_no_set_expr extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.parameters.collect(map);
         this.id.collect(map);
         this.no_set_expr.collect(map);
@@ -4036,7 +4034,7 @@ class Parameterstype extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.sub_script_expr.collect(map);
         this.parameters.collect(map);
     }
@@ -4060,7 +4058,7 @@ class Sub_script_expr_no_ternary_expr extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.no_ternary_expr.collect(map);
     }
 
@@ -4081,7 +4079,7 @@ class Sub_script_expr_colon extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
     }
 
     @Override
@@ -4106,7 +4104,7 @@ class Sub_script_expr_no_ternary_expr_colon_no_ternary_expr extends Node impleme
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.no_ternary_expr1.collect(map);
         this.no_ternary_expr2.collect(map);
     }
@@ -4136,7 +4134,7 @@ class Sub_script_expr_no_ternary_expr_colon_no_ternary_expr_colon_no_ternary_exp
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.no_ternary_expr1.collect(map);
         this.no_ternary_expr2.collect(map);
         this.no_ternary_expr3.collect(map);
@@ -4161,7 +4159,7 @@ class No_ternary_expr_unary_expr extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.unary_expr.collect(map);
     }
 
@@ -4187,7 +4185,7 @@ class No_ternary_expr_multiply extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.no_ternary_expr1.collect(map);
         this.no_ternary_expr2.collect(map);
     }
@@ -4214,7 +4212,7 @@ class No_ternary_expr_dotMultiply extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.no_ternary_expr1.collect(map);
         this.no_ternary_expr2.collect(map);
     }
@@ -4241,7 +4239,7 @@ class No_ternary_expr_dotDivide extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.no_ternary_expr1.collect(map);
         this.no_ternary_expr2.collect(map);
     }
@@ -4268,7 +4266,7 @@ class No_ternary_expr_divide extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.no_ternary_expr1.collect(map);
         this.no_ternary_expr2.collect(map);
     }
@@ -4295,7 +4293,7 @@ class No_ternary_expr_modulus extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.no_ternary_expr1.collect(map);
         this.no_ternary_expr2.collect(map);
     }
@@ -4322,7 +4320,7 @@ class No_ternary_expr_plus extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.no_ternary_expr1.collect(map);
         this.no_ternary_expr2.collect(map);
     }
@@ -4349,7 +4347,7 @@ class No_ternary_expr_minus extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.no_ternary_expr1.collect(map);
         this.no_ternary_expr2.collect(map);
     }
@@ -4376,7 +4374,7 @@ class No_ternary_expr_out extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.no_ternary_expr1.collect(map);
         this.no_ternary_expr2.collect(map);
     }
@@ -4403,7 +4401,7 @@ class No_ternary_expr_in extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.no_ternary_expr1.collect(map);
         this.no_ternary_expr2.collect(map);
     }
@@ -4430,7 +4428,7 @@ class No_ternary_expr_and extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.no_ternary_expr1.collect(map);
         this.no_ternary_expr2.collect(map);
     }
@@ -4457,7 +4455,7 @@ class No_ternary_expr_andand extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.no_ternary_expr1.collect(map);
         this.no_ternary_expr2.collect(map);
     }
@@ -4484,7 +4482,7 @@ class No_ternary_expr_or extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.no_ternary_expr1.collect(map);
         this.no_ternary_expr2.collect(map);
     }
@@ -4511,7 +4509,7 @@ class No_ternary_expr_oror extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.no_ternary_expr1.collect(map);
         this.no_ternary_expr2.collect(map);
     }
@@ -4538,7 +4536,7 @@ class No_ternary_expr_less extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.no_ternary_expr1.collect(map);
         this.no_ternary_expr2.collect(map);
     }
@@ -4565,7 +4563,7 @@ class No_ternary_expr_lessEqual extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.no_ternary_expr1.collect(map);
         this.no_ternary_expr2.collect(map);
     }
@@ -4592,7 +4590,7 @@ class No_ternary_expr_greater extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.no_ternary_expr1.collect(map);
         this.no_ternary_expr2.collect(map);
     }
@@ -4619,7 +4617,7 @@ class No_ternary_expr_greaterEqual extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.no_ternary_expr1.collect(map);
         this.no_ternary_expr2.collect(map);
     }
@@ -4646,7 +4644,7 @@ class No_ternary_expr_equal extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.no_ternary_expr1.collect(map);
         this.no_ternary_expr2.collect(map);
     }
@@ -4673,7 +4671,7 @@ class No_ternary_expr_notEqual extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.no_ternary_expr1.collect(map);
         this.no_ternary_expr2.collect(map);
     }
@@ -4697,7 +4695,7 @@ class No_set_expr_no_ternary_expr extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.no_ternary_expr.collect(map);
     }
 
@@ -4726,7 +4724,7 @@ class No_set_expr_no_ternary_expr_if_no_ternary_expr extends Node implements Exp
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.no_ternary_expr.collect(map);
         this.no_ternary_expr1.collect(map);
         this.no_ternary_expr2.collect(map);
@@ -4754,7 +4752,7 @@ class No_set_expr_no_ternary_expr_colon extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.no_ternary_expr1.collect(map);
         this.no_ternary_expr2.collect(map);
     }
@@ -4784,7 +4782,7 @@ class No_set_expr_no_ternary_expr_colon_no_ternary_expr extends Node implements 
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.no_ternary_expr1.collect(map);
         this.no_ternary_expr2.collect(map);
         this.no_ternary_expr3.collect(map);
@@ -4809,7 +4807,7 @@ class No_comma_expr_no_set_expr extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.no_set_expr.collect(map);
     }
 
@@ -4836,7 +4834,7 @@ class No_comma_expr_equal extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.no_set_expr.collect(map);
         this.no_comma_expr.collect(map);
     }
@@ -4864,7 +4862,7 @@ class No_comma_expr_plusEqual extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.no_set_expr.collect(map);
         this.no_comma_expr.collect(map);
     }
@@ -4892,7 +4890,7 @@ class No_comma_expr_minusEqual extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.no_set_expr.collect(map);
         this.no_comma_expr.collect(map);
     }
@@ -4920,7 +4918,7 @@ class No_comma_expr_multEqual extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.no_set_expr.collect(map);
         this.no_comma_expr.collect(map);
     }
@@ -4948,7 +4946,7 @@ class No_comma_expr_divideEqual extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.no_set_expr.collect(map);
         this.no_comma_expr.collect(map);
     }
@@ -4976,7 +4974,7 @@ class No_comma_expr_dot_multEqual extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.no_set_expr.collect(map);
         this.no_comma_expr.collect(map);
     }
@@ -5004,7 +5002,7 @@ class No_comma_expr_dot_divideEqual extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.no_set_expr.collect(map);
         this.no_comma_expr.collect(map);
     }
@@ -5028,7 +5026,7 @@ class Unop_minus extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
     }
 
     @Override
@@ -5050,7 +5048,7 @@ class Unop_plus extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
     }
 
     @Override
@@ -5072,7 +5070,7 @@ class Unop_not extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
     }
 
     @Override
@@ -5094,7 +5092,7 @@ class Unop_increment extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
     }
 
     @Override
@@ -5116,7 +5114,7 @@ class Unop_decrement extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
     }
 
     @Override
@@ -5138,7 +5136,7 @@ class Expr_no_comma_expr extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.no_comma_expr.collect(map);
     }
 
@@ -5164,7 +5162,7 @@ class Expr_comma extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.expr1.collect(map);
         this.expr2.collect(map);
     }
@@ -5192,7 +5190,7 @@ class Border_expr extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.bornes.collect(map);
         this.instruction.collect(map);
     }
@@ -5223,7 +5221,7 @@ class Bornes_id_expr_expr extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.expr1.collect(map);
         this.expr2.collect(map);
     }
@@ -5255,7 +5253,7 @@ class Bornes_id_expr_expr_id extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.expr1.collect(map);
         this.expr2.collect(map);
     }
@@ -5280,7 +5278,7 @@ class Catchs extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.instruction.collect(map);
     }
 
@@ -5301,7 +5299,7 @@ class Instruction_ extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
     }
 
     @Override
@@ -5323,7 +5321,7 @@ class Instruction_include_string extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
     }
 
     @Override
@@ -5345,7 +5343,7 @@ class Instruction_load_string extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
     }
 
     @Override
@@ -5373,7 +5371,7 @@ class Instruction_try_instructions_catchs extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.Try1.collect(map);
         this.instructions.collect(map);
         this.catchs.collect(map);
@@ -5399,7 +5397,7 @@ class Instruction_expr extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.expr.collect(map);
     }
 
@@ -5422,7 +5420,7 @@ class Instruction_declaration extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.declaration.collect(map);
     }
 
@@ -5455,7 +5453,7 @@ class For_loop_idfor_primary_instruction extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.for_loop.collect(map);
         this.idfor.collect(map);
         this.primary.collect(map);
@@ -5495,7 +5493,7 @@ class Instruction_for_loop extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.for_loop.collect(map);
         this.expr1.collect(map);
         this.expr2.collect(map);
@@ -5536,7 +5534,7 @@ class Instruction_declaration_for_expr_expr_instruction extends Node implements 
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.for_loop.collect(map);
         this.declaration_for.collect(map);
         this.expr2.collect(map);
@@ -5571,7 +5569,7 @@ class Instruction_while_loop extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.while_loop.collect(map);
         this.expr.collect(map);
         this.instruction.collect(map);
@@ -5601,7 +5599,7 @@ class Instruction_if extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.expr.collect(map);
         this.instruction.collect(map);
     }
@@ -5633,7 +5631,7 @@ class Instruction_if_else extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.expr.collect(map);
         this.instruction1.collect(map);
         this.instruction2.collect(map);
@@ -5665,7 +5663,7 @@ class Instruction_begin_end extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.begin.collect(map);
         this.end.collect(map);
         this.instruction.collect(map);
@@ -5693,7 +5691,7 @@ class Instruction_border_id_border_expr extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.border_expr.collect(map);
     }
 
@@ -5720,7 +5718,7 @@ class Instruction_border_id_array extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.array.collect(map);
     }
 
@@ -5741,7 +5739,7 @@ class Instruction_break extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
     }
 
     @Override
@@ -5761,7 +5759,7 @@ class Instruction_continue extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
     }
 
     @Override
@@ -5785,7 +5783,7 @@ class Instruction_return extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.expr.collect(map);
     }
 
@@ -5808,7 +5806,7 @@ class Idfor_id extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.id.collect(map);
     }
 
@@ -5834,7 +5832,7 @@ class Idfor_comma_id extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.id1.collect(map);
         this.id2.collect(map);
     }
@@ -5864,7 +5862,7 @@ class Idfor_comma_id_comma_id extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.id1.collect(map);
         this.id2.collect(map);
         this.id3.collect(map);
@@ -5887,7 +5885,7 @@ class Try extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
     }
 
     @Override
@@ -5912,7 +5910,7 @@ class Declaration_for extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.type_of_dcl.collect(map);
         this.list_of_dcls.collect(map);
     }
@@ -5934,7 +5932,7 @@ class For_loop extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
     }
 
     @Override
@@ -5954,7 +5952,7 @@ class While_loop extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
     }
 
     @Override
@@ -5974,7 +5972,7 @@ class Begin extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
     }
 
     @Override
@@ -5994,7 +5992,7 @@ class End extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
     }
 
     @Override
@@ -6021,7 +6019,7 @@ class Declaration_type_of_dcl_list_of_dcls extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.type_of_dcl.collect(map);
         this.list_of_dcls.collect(map);
     }
@@ -6049,7 +6047,7 @@ class Declaration_fespace_def_list extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.fespace_def_list.collect(map);
     }
 
@@ -6073,7 +6071,7 @@ class Declaration_spaceIDs extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.spaceIDs.collect(map);
     }
 
@@ -6101,7 +6099,7 @@ class Declaration_function_id_expr extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.expr.collect(map);
     }
 
@@ -6135,7 +6133,7 @@ class Declaration_function_type_of_dcl_id extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.type_of_dcl.collect(map);
         this.list_of_id_args.collect(map);
         this.instructions.collect(map);
@@ -6169,7 +6167,7 @@ class Function_id_list_of_id_args extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.list_of_id_args.collect(map);
         this.no_comma_expr.collect(map);
     }
@@ -6194,7 +6192,7 @@ class Fespace_def_list_fespace_def extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.fespace_def.collect(map);
     }
 
@@ -6221,7 +6219,7 @@ class Fespace_def_list_comma_fespace_def extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.fespace_def_list.collect(map);
         this.fespace_def.collect(map);
     }
@@ -6250,7 +6248,7 @@ class Fespace_def extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.parameters_list.collect(map);
     }
 
@@ -6277,7 +6275,7 @@ class SpaceIDs_fespace_spaceIDb extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.fespace.collect(map);
         this.spaceIDb.collect(map);
     }
@@ -6307,7 +6305,7 @@ class SpaceIDs_fespace_array_ID_spaceIDa extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.fespace.collect(map);
         this.spaceIDa.collect(map);
     }
@@ -6332,7 +6330,7 @@ class SpaceIDb_id_space extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.id_space.collect(map);
     }
 
@@ -6359,7 +6357,7 @@ class SpaceIDb_comma_id_space extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.spaceIDb.collect(map);
         this.id_space.collect(map);
     }
@@ -6384,7 +6382,7 @@ class SpaceIDa_id_array_space extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.id_array_space.collect(map);
     }
 
@@ -6411,7 +6409,7 @@ class SpaceIDa_comma_id_array_space extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.spaceIDa.collect(map);
         this.id_array_space.collect(map);
     }
@@ -6435,7 +6433,7 @@ class Fespace123_fespace extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
     }
 
     @Override
@@ -6457,7 +6455,7 @@ class Fespace123_fespace1 extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
     }
 
     @Override
@@ -6479,7 +6477,7 @@ class Fespace123_fespace3 extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
     }
 
     @Override
@@ -6501,7 +6499,7 @@ class Fespace123_fespaceS extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
     }
 
     @Override
@@ -6523,7 +6521,7 @@ class Fespace123_fespaceL extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
     }
 
     @Override
@@ -6545,7 +6543,7 @@ class Fespace_fespace123 extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.fespace123.collect(map);
     }
 
@@ -6571,7 +6569,7 @@ class Fespace_fespace123_vector extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.fespace123.collect(map);
     }
 
@@ -6599,7 +6597,7 @@ class Id_array_space_id_no_set_expr extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.no_set_expr.collect(map);
     }
 
@@ -6628,7 +6626,7 @@ class Id_array_space_array_list_of_id1_no_set_expr extends Node implements Expre
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.list_of_id1.collect(map);
         this.no_set_expr.collect(map);
     }
@@ -6653,7 +6651,7 @@ class Id_space_id extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
     }
 
     @Override
@@ -6680,7 +6678,7 @@ class Id_space_array_no_set_expr extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.no_set_expr.collect(map);
     }
 
@@ -6707,7 +6705,7 @@ class Id_space_no_set_expr extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.no_set_expr.collect(map);
     }
 
@@ -6733,7 +6731,7 @@ class Id_space_array_list_of_id1 extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.list_of_id1.collect(map);
     }
 
@@ -6762,7 +6760,7 @@ class Id_space_array_list_of_id1_array_no_set_expr extends Node implements Expre
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.list_of_id1.collect(map);
         this.no_set_expr.collect(map);
     }
@@ -6791,7 +6789,7 @@ class Id_space_array_list_of_id1_no_set_expr extends Node implements Expression 
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.list_of_id1.collect(map);
         this.no_set_expr.collect(map);
     }
@@ -6817,7 +6815,7 @@ class Type_of_dcl_id extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
     }
 
     @Override
@@ -6841,7 +6839,7 @@ class Type_of_dcl_id_array extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
     }
 
     @Override
@@ -6866,7 +6864,7 @@ class Type_of_dcl_id_array_array extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
     }
 
     @Override
@@ -6891,7 +6889,7 @@ class Type_of_dcl_id_matrix extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
     }
 
     @Override
@@ -6917,7 +6915,7 @@ class Type_of_dcl_id_matrix_array extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
     }
 
     @Override
@@ -6941,7 +6939,7 @@ class Type_of_dcl_id_vector extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
     }
 
     @Override
@@ -6966,7 +6964,7 @@ class Type_of_dcl_id_vector_array extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
     }
 
     @Override
@@ -6992,7 +6990,7 @@ class Type_of_dcl_id_vector_matrix extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
     }
 
     @Override
@@ -7015,7 +7013,7 @@ class Parameters_list_no_set_expr extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.no_set_expr.collect(map);
     }
 
@@ -7040,7 +7038,7 @@ class Parameters_list_fespace_id extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
     }
 
     @Override
@@ -7064,7 +7062,7 @@ class Parameters_list_fespace1_id extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
     }
 
     @Override
@@ -7088,7 +7086,7 @@ class Parameters_list_fespace3_id extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
     }
 
     @Override
@@ -7112,7 +7110,7 @@ class Parameters_list_fespaceS_id extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
     }
 
     @Override
@@ -7136,7 +7134,7 @@ class Parameters_list_fespaceL_id extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
     }
 
     @Override
@@ -7162,7 +7160,7 @@ class Parameters_list_id_no_set_expr extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.no_set_expr.collect(map);
     }
 
@@ -7189,7 +7187,7 @@ class Parameters_list_comma_no_set_expr extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.parameters_list.collect(map);
         this.no_set_expr.collect(map);
     }
@@ -7220,7 +7218,7 @@ class Parameters_list_comma_id_no_set_expr extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.parameters_list.collect(map);
         this.id.collect(map);
         this.no_set_expr.collect(map);
@@ -7246,7 +7244,7 @@ class List_of_dcls_id extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
     }
 
     @Override
@@ -7273,7 +7271,7 @@ class List_of_dcls_id_no_comma_expr extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.no_comma_expr.collect(map);
     }
 
@@ -7301,7 +7299,7 @@ class List_of_dcls_id_parameters_list extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.parameters_list.collect(map);
     }
 
@@ -7328,7 +7326,7 @@ class List_of_dcls_comma extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.list_of_dcls1.collect(map);
         this.list_of_dcls2.collect(map);
     }
@@ -7353,7 +7351,7 @@ class Id_id extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
     }
 
     @Override
@@ -7376,7 +7374,7 @@ class Id_fespace extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
     }
 
     @Override
@@ -7399,7 +7397,7 @@ class Id_fespace3 extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
     }
 
     @Override
@@ -7422,7 +7420,7 @@ class Id_fespaceS extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
     }
 
     @Override
@@ -7445,7 +7443,7 @@ class Id_fespaceL extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
     }
 
     @Override
@@ -7468,7 +7466,7 @@ class Id_fespace1 extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
     }
 
     @Override
@@ -7491,7 +7489,7 @@ class List_of_id1_id extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.id.collect(map);
     }
 
@@ -7519,7 +7517,7 @@ class List_of_id1_comma_id extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.list_of_id1.collect(map);
         this.id.collect(map);
     }
@@ -7540,7 +7538,7 @@ class List_of_id_args_ extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
     }
 
     @Override
@@ -7563,7 +7561,7 @@ class List_of_id_args_id extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.id.collect(map);
     }
 
@@ -7590,7 +7588,7 @@ class List_of_id_args_set_no_comma_expr_to_id extends Node implements Expression
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.id.collect(map);
         this.no_comma_expr.collect(map);
     }
@@ -7617,7 +7615,7 @@ class List_of_id_args_fespace_id extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.id.collect(map);
     }
 
@@ -7643,7 +7641,7 @@ class List_of_id_args_fespace_and_id extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.id.collect(map);
     }
 
@@ -7669,7 +7667,7 @@ class List_of_id_args_fespace3_id extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.id.collect(map);
     }
 
@@ -7695,7 +7693,7 @@ class List_of_id_args_fespace3_and_id extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.id.collect(map);
     }
 
@@ -7721,7 +7719,7 @@ class List_of_id_args_fespaceS_id extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.id.collect(map);
     }
 
@@ -7747,7 +7745,7 @@ class List_of_id_args_fespaceS_and_id extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.id.collect(map);
     }
 
@@ -7773,7 +7771,7 @@ class List_of_id_args_fespaceL_id extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.id.collect(map);
     }
 
@@ -7799,7 +7797,7 @@ class List_of_id_args_fespaceL_and_id extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.id.collect(map);
     }
 
@@ -7825,7 +7823,7 @@ class List_of_id_args_type_of_dcl_id extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.type_of_dcl.collect(map);
         this.id.collect(map);
     }
@@ -7852,7 +7850,7 @@ class List_of_id_args_type_of_dcl_and_id extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.type_of_dcl.collect(map);
         this.id.collect(map);
     }
@@ -7878,7 +7876,7 @@ class List_of_id_args_array extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.list_of_id_args.collect(map);
     }
 
@@ -7904,7 +7902,7 @@ class List_of_id_args_comma_id extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.list_of_id_args.collect(map);
         this.id.collect(map);
     }
@@ -7932,7 +7930,7 @@ class List_of_id_args_comma_array extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.list_of_id_args1.collect(map);
         this.list_of_id_args2.collect(map);
     }
@@ -7962,7 +7960,7 @@ class List_of_id_args_comma_id_no_comma_expr extends Node implements Expression 
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.list_of_id_args.collect(map);
         this.id.collect(map);
         this.no_comma_expr.collect(map);
@@ -7992,7 +7990,7 @@ class List_of_id_args_comma_fespace_id extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.list_of_id_args.collect(map);
         this.id.collect(map);
     }
@@ -8021,7 +8019,7 @@ class List_of_id_args_comma_fespace_and_id extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.list_of_id_args.collect(map);
         this.id.collect(map);
     }
@@ -8050,7 +8048,7 @@ class List_of_id_args_comma_fespace3_id extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.list_of_id_args.collect(map);
         this.id.collect(map);
     }
@@ -8079,7 +8077,7 @@ class List_of_id_args_comma_fespace3_and_id extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.list_of_id_args.collect(map);
         this.id.collect(map);
     }
@@ -8108,7 +8106,7 @@ class List_of_id_args_comma_fespaceS_id extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.list_of_id_args.collect(map);
         this.id.collect(map);
     }
@@ -8137,7 +8135,7 @@ class List_of_id_args_comma_fespaceS_and_id extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.list_of_id_args.collect(map);
         this.id.collect(map);
     }
@@ -8166,7 +8164,7 @@ class List_of_id_args_comma_fespaceL_id extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.list_of_id_args.collect(map);
         this.id.collect(map);
     }
@@ -8195,7 +8193,7 @@ class List_of_id_args_comma_fespaceL_and_id extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.list_of_id_args.collect(map);
         this.id.collect(map);
     }
@@ -8225,7 +8223,7 @@ class List_of_id_args_comma_type_of_dcl_id extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.list_of_id_args.collect(map);
         this.type_of_dcl.collect(map);
         this.id.collect(map);
@@ -8257,7 +8255,7 @@ class List_of_id_args_comma_type_of_dcl_and_id extends Node implements Expressio
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.list_of_id_args.collect(map);
         this.id.collect(map);
         this.type_of_dcl.collect(map);
@@ -8282,7 +8280,7 @@ class Instructions_ extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.instruction.collect(map);
     }
 
@@ -8309,7 +8307,7 @@ class Instructions_instruction extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.instructions.collect(map);
         this.instruction.collect(map);
     }
@@ -8333,7 +8331,7 @@ class Input extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.instructions.collect(map);
     }
 
@@ -8348,26 +8346,22 @@ class Input extends Node implements Expression {
 
 class Templatevar extends Node implements Expression {
     String id;
-    Expression expr;
-    Templatevar(String id, Expression expr){
+    String expr;
+    Templatevar(String id, String expr){
         this.id = id;
         this.expr = expr;
     }
     public void dump(PrintStream printStream, Map<String, Expression> map) {
         if(map.containsKey(this.id)){
-            printStream.print("$ {" + this.id + ':');
-            this.expr = map.get(id);
-            this.expr.dump(printStream, map);
-            printStream.print("}");
+            Expression x = map.get(id);
+            x.dump(printStream, map);
         } else {
-            printStream.print("$ {" + this.id + ':');
-            this.expr.dump(printStream, map);
-            printStream.print('}');
+            printStream.print("$ {" + this.id + ':' + this.expr + '}');
         }
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         if(map.containsKey(id)) {
             if (!map.get(id).equals(this.expr))
                 throw new IllegalArgumentException("Key already exist with different type");
@@ -8394,7 +8388,7 @@ class Templatevar_ extends Node implements Expression {
     }
 
     @Override
-    public void collect(HashMap<String, Expression> map) {
+    public void collect(HashMap<String, String> map) {
         this.templatevar.collect(map);
     }
 
