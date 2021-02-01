@@ -2710,8 +2710,8 @@ public class Listener implements GrammarListener {
 
     @Override
     public void exitTemplatevar(GrammarParser.TemplatevarContext ctx) {
-        Templatevar node = new Templatevar(ctx.ID(0).getText(), ctx.ID(1).getText());
-        this.stack.add(node);
+        //Templatevar node = new Templatevar(ctx.ID(0).getText(), ctx.ID(1).getText());
+        //this.stack.add(node);
     }
 
     @Override
